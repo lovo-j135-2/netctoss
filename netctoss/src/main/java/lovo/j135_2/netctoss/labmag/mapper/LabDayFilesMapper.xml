@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.labmag.mapper.LabDayFilesMapper">
+
+	<insert id="insertDayTimeLabFiles">
+		insert into t_daytime_lab(account_id,year,month,day,time,ip_num) values
+		<foreach collection="list" item="data" separator=",">
+			(#{data.AccountId},#{data.year},#{data.month},
+			#{data.day},#{data.time},#{data.ip})
+		</foreach>
+	</insert>
+	
+</mapper>

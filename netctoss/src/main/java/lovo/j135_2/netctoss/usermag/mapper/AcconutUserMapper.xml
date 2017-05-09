@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.usermag.mapper.AcconutUserMapper">
+	<resultMap type="AcconutUser" id="AcconutUserMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="real_name" column="real_name" javaType="java.lang.String"/>
+		<result property="id_num" column="id_num" javaType="java.lang.String"/>
+		<result property="password" column="password" javaType="java.lang.String"/>
+		<result property="gender" column="gender" javaType="int"/>
+		<result property="account_name" column="account_name" javaType="java.lang.String"/>
+		<result property="phone" column="phone" javaType="java.lang.String"/>
+		<result property="address" column="address" javaType="java.lang.String"/>
+		<result property="postcode" column="postcode" javaType="java.lang.String"/>
+		<result property="qq" column="qq" javaType="java.lang.String"/>
+		<result property="status" column="status" javaType="java.lang.String"/>
+	</resultMap>
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		insert into t_accountuser(real_name,id_num,password,gender,account_name,phone,address,postcode,qq,status)
+		values(#{real_name},#{id_num},#{password},#{gender},#{account_name},#{phone},#{address},#{postcode},#{qq},#{status})
+	</insert>
+</mapper>

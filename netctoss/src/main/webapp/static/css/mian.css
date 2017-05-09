@@ -1,0 +1,8 @@
+#piframe div iframe{
+
+    frameborder: none;
+    border:none;
+    height: 100%;
+    width: 100%;
+    scrolling: auto;
+}

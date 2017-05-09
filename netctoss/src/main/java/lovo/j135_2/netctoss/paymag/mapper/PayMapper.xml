@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.paymag.mapper.PayMapper">
+
+	<resultMap type="Pay" id="payMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="payName" column="pay_name" javaType="java.lang.String"/>
+		<result property="payType" column="pay_type" javaType="java.lang.String"/>
+		<result property="payTime" column="pay_time" javaType="int"/>
+		<result property="basicCost" column="basic_cost" javaType="java.math.BigDecimal"/>
+		<result property="unitCost" column="unit_cost" javaType="java.math.BigDecimal"/>
+		<result property="costDiscrip" column="cost_discription" javaType="java.lang.String"/>
+		<result property="payStatus" column="pay_status" javaType="int"/>
+		<result property="createTime" column="create_time" javaType="java.util.Date"/>
+	</resultMap>
+	
+	<update id="updatePay" parameterType="Pay">
+		update t_pay  
+		<set>
+			<if test="pay.payName!=null">
+				pay_name=#{pay.payName},
+			</if>
+			<if test="pay.payType!=null">
+				pay_type=#{pay.payType},
+			</if>
+			<if test="pay.payTime!=null">
+				pay_time=#{pay.payTime},
+			</if>
+			<if test="pay.basicCost!=null">
+				basic_cost=#{pay.basicCost},
+			</if>
+			<if test="pay.unitCost!=null">
+				unit_cost=#{pay.unitCost},
+			</if>
+			<if test="pay.costDiscrip!=null">
+				cost_discription=#{pay.costDiscrip},
+			</if>
+			<if test="pay.payStatus!=null">
+				pay_status=#{pay.payStatus},
+			</if>
+			<if test="pay.createTime!=null">
+				create_time=#{pay.createTime},
+			</if>
+		</set>
+		<where>
+			id=#{pay.id}
+		</where>
+	</update>
+	
+	<select id="findPayCountByTime" resultType="int">
+		select count(id) from t_pay 
+		<where>
+			create_time  
+			<foreach collection="dates" item="date" open="between" separator="and">
+				#{date}
+			</foreach>
+		</where>
+	</select>
+	
+	<select id="findPaysByTime" resultMap="payMap">
+		select * from t_pay   
+		<where>
+			create_time  
+			<foreach collection="dates" item="date" open="between" separator="and">
+				#{date}
+			</foreach>
+		</where>
+		limit #{pagePay.fromLine},#{pagePay.lines}
+	</select>
+</mapper>
