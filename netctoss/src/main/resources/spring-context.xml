@@ -62,7 +62,7 @@
 			lovo.j135_2.netctoss.labmag.beans;
 			lovo.j135_2.netctoss.managermag.beans;
 			lovo.j135_2.netctoss.rightmag.beans
-			">
+		">
 		</property>
 	</bean>
 	
@@ -78,7 +78,7 @@
 			lovo.j135_2.netctoss.managermag.mapper;
 			lovo.j135_2.netctoss.logmag.mapper;
 			lovo.j135_2.netctoss.rightmag.mapper
-		">
+	">
 		</property>
 		
 		<!-- 将SQL映射与Session进行关联 -->
@@ -123,6 +123,7 @@
 			<tx:method name="select*" propagation="SUPPORTS"/>
 		</tx:attributes>
 	</tx:advice>
+	
 	
 	<!-- 给定时任务类命名 -->
      <bean id="accoutTimerTask" class="lovo.j135_2.netctoss.accoutmag.timer.AccoutTimerTask" />

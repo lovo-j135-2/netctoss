@@ -23,22 +23,6 @@ public class AccountLoginController {
 	@Resource
 	private IAccountUserLoginService accountUserServiceImpl;
 
-	/*
-	 * // 注册用户
-	 * 
-	 * @RequestMapping(value = "/saveAccountUser", method = RequestMethod.POST,
-	 * produces = { "application/json;charset=utf-8" }) public Messager
-	 * saveAccountUser(@RequestBody AcconutUser account) {
-	 * 
-	 * Messager msg = new Messager(true, "操作成功"); try {
-	 * 
-	 * } catch (Exception e) { // TODO Auto-generated catch bloc
-	 * e.printStackTrace(); msg.setStatus(false); msg.setMsg("系统繁忙，请稍后再试"); }
-	 * return msg;
-	 * 
-	 * }
-	 */
-
 	// 用户登录
 	@RequestMapping(value = "/accountUsers", method = RequestMethod.GET, produces = {
 			"application/json;charset=utf-8" })

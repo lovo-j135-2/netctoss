@@ -1,31 +1,10 @@
 $(function() {
-
-	//注册
-	$('#zero').click(function() {
-		var account = {
-			id : "1",
-			account_name : "张三",
-			password : "123456"
-		};
-		var json = $.toJSON(account);// 将JS对象转换为JSON对象
-		$.ajax({
-			type : "POST",
-			url : "accountUserLogin/account",
-			data : json,
-			contentType : "application/json",
-			async : true,
-			success : function(data) {
-				alert(data.status);
-				alert(data.msg);
-			}
-		});
-	});
 	//登录
 	$('#one').click(function() {
 		var accountName = $('#account_name').val();
 		var pwd = $('#password').val();
 		
-
+		
 		$.ajax({
 			type : "Get",
 			url : uri,
