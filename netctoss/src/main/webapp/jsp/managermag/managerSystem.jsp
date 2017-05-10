@@ -41,16 +41,9 @@
 				<th field="password" width="80" align="right">密码</th>
 				<th field="phone" width="150">电话</th>
 				<th field="postcode" width="150">邮箱</th>
-				<!-- <th field="role" formatter="forRoleName" width="150">角色</th> -->
-				<th field="role" formatter="forRoleType" width="150">角色类型</th>
-
-				<!-- 				<th data-options="field:'name',width:100,align:'center'">名称</th>
-				<th data-options="field:'accounts',width:100,align:'center'">账号</th>
-				<th data-options="field:'password',width:100,align:'center'">密码</th>
-				<th data-options="field:'phone',width:100,align:'center'">电话</th>
-				<th data-options="field:'postcode',width:100,align:'center'">邮箱</th>
-				<th data-options="field:'roleName',formatter:'forRoleName()',width:100,align:'center'">角色</th>
-				<th data-options="field:'roleType',width:100,align:'center'">角色类型</th>  -->
+				<th field="role" formatter="forRoleName" width="150">管理员角色</th>
+				<!-- <th field="role" formatter="forRoleType" width="150">角色类型</th> -->
+			
 			</tr>
 		</thead>
 
@@ -61,8 +54,54 @@
 			href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-edit" plain="true" onclick="editUser()">修改</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-remove" plain="true" onclick="destroyUser()">删除</a>
+			iconCls="icon-remove" plain="true" onclick="doCancel()">删除</a>
 	</div>
+	
+	
+	
+		<div id="dlg" class="easyui-dialog"
+		style="width: 400px; height: 280px; padding: 10px 20px" closed="true"
+		buttons="#dlg-buttons">
+		<div class="ftitle">添加管理员</div>
+		<form id="fm" method="post">
+			<div class="fitem">
+				<label>用户名:</label> <br> <input name="name"
+					class="easyui-validatebox" required="true" id="addUserNAme">
+			</div>
+			<div class="fitem">
+				<label>账号:</label><br> <input name="accounts"
+					class="easyui-validatebox" required="true" id="addAccounts">
+			</div>
+			<div class="fitem">
+				<label>密码:</label><br> <input name="password" 
+				required="true" type="password" class="easyui-validatebox" id="addPassword">
+			</div>
+			<div class="fitem">
+				<label>电话:</label><br> <input name="phone" id="addPhone">
+			</div>
+			<div class="fitem">
+				<label>Email:</label><br> <input name="postcode"
+					class="easyui-validatebox" validType="email" id="addPostcode">
+			</div>
+			<div class="fitem">
+			<label>角色类型</label><br><input id="addRoleName" name="dept" value="aa"> 
+	</input>
+	</div>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-ok" onclick="saveUser()">添加</a> <a
+			href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">退出</a>
+	</div>
+	
+	
+	
+
+	
+	
+	
 	<script type="text/javascript">
 		function forRoleName(value) {
 			return value.name;
@@ -70,6 +109,10 @@
 		function forRoleType(value) {
 			return value.roleType;
 		};
+		
+		
+		
+		
 	</script>
 
 </body>

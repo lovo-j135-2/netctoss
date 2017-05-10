@@ -62,6 +62,7 @@
 			lovo.j135_2.netctoss.labmag.beans;
 			lovo.j135_2.netctoss.managermag.beans;
 			lovo.j135_2.netctoss.rightmag.beans
+			
 			">
 		</property>
 	</bean>
@@ -77,6 +78,7 @@
 			lovo.j135_2.netctoss.labmag.mapper;
 			lovo.j135_2.netctoss.managermag.mapper;
 			lovo.j135_2.netctoss.logmag.mapper
+			
 		">
 		</property>
 		
