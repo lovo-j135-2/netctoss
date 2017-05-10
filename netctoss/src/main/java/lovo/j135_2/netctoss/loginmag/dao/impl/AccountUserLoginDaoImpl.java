@@ -14,29 +14,24 @@ public class AccountUserLoginDaoImpl implements IAccountUserLoginDao {
 
 	@Resource
 	private AccountUserLoginMapper accountUserLoginMapper;
+
+	@Override
+	public AcconutUser queryAcconutUserByAccountNameAndPwd(AcconutUser account) throws Exception {
+		// TODO Auto-generated method stub
+		return accountUserLoginMapper.queryAcconutUserByAccountNameAndPwd(account);
+	}
+
+	@Override
+	public AcconutUser getAccountUserByAccountName(AcconutUser account) throws Exception {
+		// TODO Auto-generated method stub
+		return accountUserLoginMapper.getAccountUserByAccountName(account);
+	}
+
+	@Override
+	public int updatePasswordByAccountName(AcconutUser account) throws Exception {
+		// TODO Auto-generated method stub
+		return accountUserLoginMapper.updatePasswordByAccountName(account);
+	}
 	
-	@Override
-	public int saveAccountUser(AcconutUser account)throws Exception {
-		// TODO Auto-generated method stub
-		return accountUserLoginMapper.saveAccountUser(account);
-	}
-
-	@Override
-	public List<AcconutUser> queryAcconutUserByAccountAndPwd(AcconutUser account) throws Exception {
-		// TODO Auto-generated method stub
-		return accountUserLoginMapper.queryAcconutUserByAccountAndPwd(account);
-	}
-
-	@Override
-	public AcconutUser getAccountUser(Long id) throws Exception {
-		// TODO Auto-generated method stub
-		return accountUserLoginMapper.getAccountUser(id);
-	}
-
-	@Override
-	public int updateAccountUser(AcconutUser account) throws Exception {
-		// TODO Auto-generated method stub
-		return accountUserLoginMapper.updateAccountUser(account);
-	}
-
+	
 }

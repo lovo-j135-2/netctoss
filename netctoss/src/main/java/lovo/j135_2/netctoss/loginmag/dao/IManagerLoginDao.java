@@ -10,7 +10,7 @@ public interface IManagerLoginDao {
 	 * @param ma
 	 * @return
 	 */
-public List<Manager> queryManagerByaccountsAndPassword(Manager manager)throws Exception;
+public Manager queryManagerByaccountsAndPassword(Manager manager) throws Exception;
 	/**
 	 * 根据id查看管理员信息
 	 * @param id
@@ -18,16 +18,24 @@ public List<Manager> queryManagerByaccountsAndPassword(Manager manager)throws Ex
 	 */
 public Manager getManagerById(Long id)throws Exception;
 	/**
-	 * 修改管理员信息（修改密码）
+	 * 根据管理员名字查看管理员信息
+	 * @param accounts
+	 * @return
+	 */
+public Manager getManagerByaccounts(Manager manager)throws Exception;
+
+
+
+	/**
+	 * 根据管理员名字修改管理员信息（修改密码）
 	 * @param manager
 	 * @return
 	 */
-public int updateManager(Manager manager)throws Exception; 
+public int updatePasswordByAccounts(Manager manager)throws Exception; 
 
     /**
      * 退出系统
      */
-
 	
 	
 }

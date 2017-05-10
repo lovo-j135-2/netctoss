@@ -1,7 +1,7 @@
-package netctoss;
+package netctoss.loginTest;
 
-import java.util.ArrayList;
-import java.util.List;
+
+
 
 import javax.annotation.Resource;
 
@@ -16,38 +16,19 @@ import lovo.j135_2.netctoss.loginmag.service.IAccountUserLoginService;
 import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:spring-context.xml" })
+@ContextConfiguration(locations = {"classpath*:spring-context.xml" })
 public class TestAccountUserLogin {
 	@Resource
 	private IAccountUserLoginService accountUserServiceImpl;
 
-	
-	@Test
-	public void testSaveAccountUser() {
-		AcconutUser account = new AcconutUser();
-		account.setAccount_name("xianhua");
-		account.setPassword("222323232");
-		try {
-			accountUserServiceImpl.saveAccountUser(account);
-			System.out.println(account);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-	
 	@Ignore
-	public void testqueryAcconutUserByAccountAndPwd() {
-		List<AcconutUser> list = new ArrayList<AcconutUser>();
+	public void testqueryAcconutUserByAccountNameAndPwd() {
 		AcconutUser ac = new AcconutUser();
 		ac.setAccount_name("xianchengduo");
-		ac.setPassword("12233434");
+		ac.setPassword("9999999");
 		try {
-			list = accountUserServiceImpl.queryAcconutUserByAccountAndPwd(ac);
-			Assert.assertNotNull(list);// 为啥呢？
-			System.out.println(list);
+		 ac=accountUserServiceImpl.queryAcconutUserByAccountNameAndPwd(ac);	 
+		 System.out.println(ac);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,8 +38,11 @@ public class TestAccountUserLogin {
 
 	@Ignore
 	public void testGetAccountUser() {
+		AcconutUser ac = new AcconutUser();
+		ac.setAccount_name("xianchengduo");
 		try {
-			AcconutUser ac = accountUserServiceImpl.getAccountUser(1l);
+			ac = accountUserServiceImpl.getAccountUserByAccountName(ac);
+			System.out.println(ac);
 			System.out.println(ac.getAccount_name());
 			System.out.println(ac.getPassword());
 			System.out.println(ac.getPhone());
@@ -68,21 +52,21 @@ public class TestAccountUserLogin {
 		}
 
 	}
-	@Ignore
+	
+	@Test
 	public void testUpdateAccountUser(){
 		AcconutUser ac=new AcconutUser();
-		ac.setId(1l);
-		ac.setPassword("9999999");
+		ac.setAccount_name("xianhua");
+		ac.setPassword("1111111");
 		int num=0;
 		try {
-			num=accountUserServiceImpl.updateAccountUser(ac);
+			num=accountUserServiceImpl.updatePasswordByAccountName(ac);
 			System.out.println(num);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+	
 	}
 	
 

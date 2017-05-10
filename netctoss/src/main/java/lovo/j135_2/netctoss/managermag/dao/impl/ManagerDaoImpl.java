@@ -55,6 +55,7 @@ public class ManagerDaoImpl implements ManagerDao {
 		return managerMapper.getManagerCount();
 	}
 
+	//注释
 	@Override
 	public List<Role> getAllRole() throws Exception {
 		// TODO Auto-generated method stub
