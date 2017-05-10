@@ -2,8 +2,6 @@ package lovo.j135_2.netctoss.usermag.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
 import lovo.j135_2.netctoss.usermag.beans.Pager;
 
