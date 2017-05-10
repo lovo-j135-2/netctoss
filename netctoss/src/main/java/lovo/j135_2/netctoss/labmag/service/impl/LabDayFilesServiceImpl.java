@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import lovo.j135_2.netctoss.dmsmag.beans.DMS;
 import lovo.j135_2.netctoss.dmsmag.service.DMSService;
-import lovo.j135_2.netctoss.labmag.bean.DayTimeFiles;
-import lovo.j135_2.netctoss.labmag.bean.PageDayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.DayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.PageDayTimeFiles;
 import lovo.j135_2.netctoss.labmag.dao.LabDayFilesDao;
 import lovo.j135_2.netctoss.labmag.service.LabDayFilesService;
 import lovo.j135_2.netctoss.util.MyDate;

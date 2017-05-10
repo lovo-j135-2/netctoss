@@ -2,8 +2,8 @@ package lovo.j135_2.netctoss.labmag.service;
 
 import java.util.List;
 
-import lovo.j135_2.netctoss.labmag.bean.DayTimeFiles;
-import lovo.j135_2.netctoss.labmag.bean.PageDayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.DayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.PageDayTimeFiles;
 
 public interface LabDayFilesService {
 

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import lovo.j135_2.netctoss.labmag.bean.DayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.DayTimeFiles;
 
 public interface LabDayFilesMapper {
 	

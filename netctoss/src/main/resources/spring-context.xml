@@ -59,10 +59,11 @@
 			lovo.j135_2.netctoss.accoutmag.beans;
 			lovo.j135_2.netctoss.paymag.beans;
 			lovo.j135_2.netctoss.dmsmag.beans;
-			lovo.j135_2.netctoss.labmag.bean;
+			lovo.j135_2.netctoss.labmag.beans;
 			lovo.j135_2.netctoss.managermag.beans;
 			lovo.j135_2.netctoss.rightmag.beans;
 			lovo.j135_2.netctoss.logmag.beans
+			lovo.j135_2.netctoss.rightmag.beans
 			">
 		</property>
 	</bean>
@@ -77,7 +78,8 @@
 			lovo.j135_2.netctoss.dmsmag.mapper;
 			lovo.j135_2.netctoss.labmag.mapper;
 			lovo.j135_2.netctoss.managermag.mapper;
-			lovo.j135_2.netctoss.logmag.mapper
+			lovo.j135_2.netctoss.logmag.mapper;
+			lovo.j135_2.netctoss.rightmag.mapper
 		">
 		</property>
 		

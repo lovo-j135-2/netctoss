@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import lovo.j135_2.netctoss.labmag.bean.DayTimeFiles;
-import lovo.j135_2.netctoss.labmag.bean.PageDayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.DayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.PageDayTimeFiles;
 import lovo.j135_2.netctoss.labmag.service.LabDayFilesService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

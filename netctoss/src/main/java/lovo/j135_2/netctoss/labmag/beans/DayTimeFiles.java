@@ -1,4 +1,4 @@
-package lovo.j135_2.netctoss.labmag.bean;
+package lovo.j135_2.netctoss.labmag.beans;
 
 import java.io.Serializable;
 
