@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lovo.j135_2.netctoss.labmag.bean.PageDayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.PageDayTimeFiles;
 import lovo.j135_2.netctoss.labmag.service.LabDayFilesService;
 
 @RestController

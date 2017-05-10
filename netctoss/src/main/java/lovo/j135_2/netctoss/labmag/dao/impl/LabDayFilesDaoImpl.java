@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
 
-import lovo.j135_2.netctoss.labmag.bean.DayTimeFiles;
-import lovo.j135_2.netctoss.labmag.bean.PageDayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.DayTimeFiles;
+import lovo.j135_2.netctoss.labmag.beans.PageDayTimeFiles;
 import lovo.j135_2.netctoss.labmag.dao.LabDayFilesDao;
 import lovo.j135_2.netctoss.labmag.mapper.LabDayFilesMapper;
 
