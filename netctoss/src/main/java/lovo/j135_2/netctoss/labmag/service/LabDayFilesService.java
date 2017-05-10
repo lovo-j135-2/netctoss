@@ -14,4 +14,6 @@ public interface LabDayFilesService {
 	public PageDayTimeFiles findLabMonthMesByYearAndMonth(int year,int month,PageDayTimeFiles pageDayTime) throws Exception;
 	
 	public PageDayTimeFiles findLabYearMesByYear(int year,PageDayTimeFiles pageDayTime) throws Exception;
+	
+	public PageDayTimeFiles findLabYearsMonthCountByYearAndIp(int year,String ip,PageDayTimeFiles pageDayTime) throws Exception;
 }

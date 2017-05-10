@@ -32,7 +32,6 @@
 		<div title="按月查询账务" style="padding:60px;">
 			<div id="tb" style="padding: 3px">
 				<select id="year" class="easyui-combobox" name="state" label="年" labelPosition="top" style="width:100px;">
-					<option value="2016">2016</option>
 				</select>
 				<select id="month" class="easyui-combobox" name="state" label="月" labelPosition="top" style="width:100px;">
 					<option value="1">1</option>
@@ -49,10 +48,10 @@
 					<option value="12">12</option>
 				</select>
 				<a href="javascript:void(0)" class="easyui-linkbutton" plain="true"
-					onclick="doSearch()">查询</a>
+					onclick="doSearchMonth()">查询</a>
 			</div>
 			
-			<table id="monthTable" title="资费信息一览表" class="easyui-datagrid"
+			<table id="monthTable" title="实验室每月时长信息" class="easyui-datagrid"
 				style="width: auto; height: auto" pagination="true"
 				toolbar="#toolbar" rownumbers="true" fitColumns="true"
 				singleSelect="true">
@@ -60,18 +59,99 @@
 					<tr>
 						<th data-options="field:'year',width:50">年</th>
 						<th data-options="field:'month',width:50">月</th>
-						<th data-options="field:'day',width:50">日</th>
+						<!-- <th data-options="field:'day',width:50">日</th> -->
 						<th data-options="field:'time',width:50">总时长</th>
 						<th data-options="field:'ip',width:50">实验室ip</th>
 					</tr>
 				</thead>
 			</table>
+			
+			
+			<div id="dayDialog" class="easyui-dialog" title="实验室ip的每天明细" style="width:600px;height:300px;"
+		       data-options="resizable:true,modal:false,closed:true">
+			    <table id="dayTable" title="实验室每天账务时长明细" class="easyui-datagrid"
+					style="width: auto; height: auto" pagination="true"
+					toolbar="#toolbar" rownumbers="true" fitColumns="true"
+					singleSelect="true">
+					<thead>
+						<tr>
+							<th data-options="field:'year',width:50">年</th>
+							<th data-options="field:'month',width:50">月</th>
+							<th data-options="field:'day',width:50">日</th>
+							<th data-options="field:'time',width:50">总时长</th>
+							<th data-options="field:'ip',width:50">实验室ip</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			
 		</div>
+		
+		
+		
+
 		
 		
 		<div title="按年查询账务"  style="padding:60px;">
-			Second Tab
+			<div id="tb" style="padding: 3px">
+				<select id="yearByYear" class="easyui-combobox" name="state" label="年" labelPosition="top" style="width:100px;">
+				</select>
+				<a href="javascript:void(0)" class="easyui-linkbutton" plain="true"
+					onclick="doSearchYear()">查询</a>
+			</div>
+			
+			<table id="yearTable" title="实验室每月时长信息" class="easyui-datagrid"
+				style="width: auto; height: auto" pagination="true"
+				toolbar="#toolbar" rownumbers="true" fitColumns="true"
+				singleSelect="true">
+				<thead>
+					<tr>
+						<th data-options="field:'year',width:50">年</th>
+						<!-- <th data-options="field:'month',width:50">月</th> -->
+						<th data-options="field:'time',width:50">总时长</th>
+						<th data-options="field:'ip',width:50">实验室ip</th>
+					</tr>
+				</thead>
+			</table>
+			
+			
+			<div id="monthDialog" class="easyui-dialog" title="实验室ip的每月明细" style="width:600px;height:300px;"
+		       data-options="resizable:true,modal:false,closed:true">
+		       <label id="ipLabel"></label>
+			    <table id="yearMonthTable"  class="easyui-datagrid"
+					style="width: auto; height: auto" pagination="true"
+					toolbar="#toolbar" rownumbers="true" fitColumns="true"
+					singleSelect="true">
+					<thead>
+						<tr>
+							<th data-options="field:'year',width:50">年</th>
+							<th data-options="field:'month',width:50">月</th>
+							<th data-options="field:'time',width:50">总时长</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			
+			<div id="monthDayDialog" class="easyui-dialog" title="实验室ip的每月明细" style="width:600px;height:300px;"
+		       data-options="resizable:true,modal:false,closed:true">
+		       <label id="ipDayLabel"></label>
+			    <table id="yearMonthDayTable"  class="easyui-datagrid"
+					style="width: auto; height: auto" pagination="true"
+					toolbar="#toolbar" rownumbers="true" fitColumns="true"
+					singleSelect="true">
+					<thead>
+						<tr>
+							<th data-options="field:'year',width:50">年</th>
+							<th data-options="field:'month',width:50">月</th>
+							<th data-options="field:'day',width:50">日</th>
+							<th data-options="field:'time',width:50">总时长</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			
 		</div>
+		
 	</div>
 	
 

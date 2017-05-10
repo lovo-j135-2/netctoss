@@ -53,31 +53,27 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 给类取类别名 -->
-		<property name="typeAliasesPackage" value="
-			lovo.j135_2.netctoss.usermag.beans;
+		<property name="typeAliasesPackage" value="lovo.j135_2.netctoss.usermag.beans;
 			lovo.j135_2.netctoss.billmag.beans;
 			lovo.j135_2.netctoss.accoutmag.beans;
 			lovo.j135_2.netctoss.paymag.beans;
 			lovo.j135_2.netctoss.dmsmag.beans;
 			lovo.j135_2.netctoss.labmag.beans;
 			lovo.j135_2.netctoss.managermag.beans;
-			lovo.j135_2.netctoss.rightmag.beans
-			">
+			lovo.j135_2.netctoss.rightmag.beans">
 		</property>
 	</bean>
 	
 	<!-- 第三步，配置SQL映射器的扫描 -->
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="
-			lovo.j135_2.netctoss.paymag.mapper;
+		<property name="basePackage" value="lovo.j135_2.netctoss.paymag.mapper;
 			lovo.j135_2.netctoss.loginmag.mapper;
 			lovo.j135_2.netctoss.usermag.mapper;
 			lovo.j135_2.netctoss.accoutmag.mapper;
 			lovo.j135_2.netctoss.dmsmag.mapper;
 			lovo.j135_2.netctoss.labmag.mapper;
 			lovo.j135_2.netctoss.managermag.mapper;
-			lovo.j135_2.netctoss.logmag.mapper
-		">
+			lovo.j135_2.netctoss.logmag.mapper">
 		</property>
 		
 		<!-- 将SQL映射与Session进行关联 -->
