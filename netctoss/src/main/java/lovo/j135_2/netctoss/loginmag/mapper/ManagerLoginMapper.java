@@ -13,14 +13,18 @@ public interface ManagerLoginMapper {
 
 @Select("select * from t_manager where accounts=#{ma.accounts} and password=#{ma.password}")
 @ResultType(Manager.class)
-public List<Manager> queryManagerByaccountsAndPassword(@Param("ma")Manager manager)throws Exception;
+public Manager queryManagerByaccountsAndPassword(@Param("ma")Manager manager) throws Exception;
 	
 @Select("select * from t_manager where id=#{id}")
 @ResultType(Manager.class)
 public Manager getManagerById(Long id)throws Exception;
 
-@Update("update t_manager set password=#{ma.password} where id=#{ma.id}")
-public int updateManager(@Param("ma")Manager manager)throws Exception; 
+@Select("select * from t_manager where accounts=#{ma.accounts}")
+@ResultType(Manager.class)
+public Manager getManagerByaccounts(@Param("ma")Manager manager)throws Exception;
+
+@Update("update t_manager set password=#{ma.password} where accounts=#{ma.accounts}")
+public int updatePasswordByAccounts(@Param("ma")Manager manager)throws Exception; 
    
 	/**
      * 退出系统

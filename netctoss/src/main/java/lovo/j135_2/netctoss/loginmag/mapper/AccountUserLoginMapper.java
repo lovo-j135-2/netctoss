@@ -13,20 +13,16 @@ import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
 
 public interface AccountUserLoginMapper {
 
-	@Insert("insert into t_accountuser(password,account_name) values(#{account.password},#{account.account_name})")
-	@Options(useGeneratedKeys=true,keyProperty="account.id")
-	public int saveAccountUser(@Param("account")AcconutUser account) throws Exception;
-	
 	@Select("select * from t_accountuser where account_name=#{account.account_name} and password=#{account.password}")
 	@ResultType(AcconutUser.class)
-	public List<AcconutUser> queryAcconutUserByAccountAndPwd(@Param("account")AcconutUser account)throws Exception;
+	public AcconutUser queryAcconutUserByAccountNameAndPwd(@Param("account")AcconutUser account) throws Exception;
 	
-	@Select("select * from t_accountuser where id=#{id}")
+	@Select("select * from t_accountuser where account_name=#{account.account_name}")
 	@ResultType(AcconutUser.class)
-	public AcconutUser getAccountUser(Long id)throws Exception;
+	public AcconutUser getAccountUserByAccountName(@Param("account")AcconutUser account) throws Exception;
 	
-	@Update("update t_accountuser set password=#{account.password} where id=#{account.id}")
-	public int updateAccountUser(@Param("account")AcconutUser account)throws Exception;
+	@Update("update t_accountuser set password=#{account.password} where account_name=#{account.account_name}")
+	public int updatePasswordByAccountName(@Param("account")AcconutUser account)throws Exception;
 	/**
 	 * 退出系统
 	 */

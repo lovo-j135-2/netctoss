@@ -18,6 +18,21 @@ public class Role implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Role(String name, String roleType) {
+		super();
+		this.name = name;
+		this.roleType = roleType;
+	}
+
+	
+	public Role(long id, String name, String roleType) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.roleType = roleType;
+	}
+
 	public Role(long id, String name, String roleType, List<Right> rights) {
 		super();
 		this.id = id;

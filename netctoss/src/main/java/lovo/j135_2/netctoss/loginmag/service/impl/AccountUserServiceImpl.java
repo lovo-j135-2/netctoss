@@ -17,27 +17,22 @@ public class AccountUserServiceImpl implements IAccountUserLoginService {
 	private IAccountUserLoginDao accountUserLoginDaoImpl;
 
 	@Override
-	public int saveAccountUser(AcconutUser account)throws Exception {
+	public AcconutUser queryAcconutUserByAccountNameAndPwd(AcconutUser account) throws Exception {
 		// TODO Auto-generated method stub
-		return accountUserLoginDaoImpl.saveAccountUser(account);
+		return accountUserLoginDaoImpl.queryAcconutUserByAccountNameAndPwd(account);
 	}
 
 	@Override
-	public List<AcconutUser> queryAcconutUserByAccountAndPwd(AcconutUser account)throws Exception {
+	public AcconutUser getAccountUserByAccountName(AcconutUser account) throws Exception {
 		// TODO Auto-generated method stub
-		return accountUserLoginDaoImpl.queryAcconutUserByAccountAndPwd(account);
+		return accountUserLoginDaoImpl.getAccountUserByAccountName(account);
 	}
 
 	@Override
-	public AcconutUser getAccountUser(Long id) throws Exception {
+	public int updatePasswordByAccountName(AcconutUser account) throws Exception {
 		// TODO Auto-generated method stub
-		return accountUserLoginDaoImpl.getAccountUser(id);
+		return accountUserLoginDaoImpl.updatePasswordByAccountName(account);
 	}
 
-	@Override
-	public int updateAccountUser(AcconutUser account) throws Exception {
-		// TODO Auto-generated method stub
-		return accountUserLoginDaoImpl.updateAccountUser(account);
-	}
-
+	
 }
