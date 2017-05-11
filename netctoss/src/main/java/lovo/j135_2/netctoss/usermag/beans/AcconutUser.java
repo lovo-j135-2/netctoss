@@ -2,6 +2,8 @@ package lovo.j135_2.netctoss.usermag.beans;
 
 import java.io.Serializable;
 
+import lovo.j135_2.netctoss.billmag.beans.MonthCostAccount;
+
 public class AcconutUser implements Serializable {
 
 	/**
@@ -20,6 +22,7 @@ public class AcconutUser implements Serializable {
 	private String postcode;
 	private String qq;
 	private int status;
+	private MonthCostAccount monthCostAccount;
 	public AcconutUser() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,6 +42,12 @@ public class AcconutUser implements Serializable {
 		this.status = status;
 	}
 	
+	public MonthCostAccount getMonthCostAccount() {
+		return monthCostAccount;
+	}
+	public void setMonthCostAccount(MonthCostAccount monthCostAccount) {
+		this.monthCostAccount = monthCostAccount;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -105,10 +114,12 @@ public class AcconutUser implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
 	@Override
 	public String toString() {
-		return "AcconutUser [real_name=" + real_name + ", id_num=" + id_num + ", password=" + password + ", gender="
-				+ gender + ", account_name=" + account_name + ", phone=" + phone + ", address=" + address
-				+ ", postcode=" + postcode + ", qq=" + qq + ", status=" + status + "]";
+		return "AcconutUser [id=" + id + ", real_name=" + real_name + ", id_num=" + id_num + ", password=" + password
+				+ ", gender=" + gender + ", account_name=" + account_name + ", phone=" + phone + ", address=" + address
+				+ ", postcode=" + postcode + ", qq=" + qq + ", status=" + status + ", monthCostAccount="
+				+ monthCostAccount + "]";
 	}
 }

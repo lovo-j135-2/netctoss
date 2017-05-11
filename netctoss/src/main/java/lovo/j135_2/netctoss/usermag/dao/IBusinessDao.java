@@ -49,4 +49,12 @@ public interface IBusinessDao {
 	 */
 	public List<Business> queryBusinessByPager(Pager pager)throws Exception;
 	
+	/**
+	 * 通过业务账号的id查询包含account 和资费及Lab的业务信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Business findBusinessContainLabAndAccountAndPayByBusiId(Long id) throws Exception;
+	
 }

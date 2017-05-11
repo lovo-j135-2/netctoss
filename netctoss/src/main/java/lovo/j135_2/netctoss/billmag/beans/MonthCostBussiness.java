@@ -3,7 +3,6 @@ package lovo.j135_2.netctoss.billmag.beans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import lovo.j135_2.netctoss.accoutmag.beans.MonthCostAccount;
 import lovo.j135_2.netctoss.usermag.beans.Business;
 
 public class MonthCostBussiness implements Serializable {
@@ -17,9 +16,16 @@ public class MonthCostBussiness implements Serializable {
 	private String payType;
 	private MonthCostAccount accout;
 	private Business bussiness;
+	private Long accountId;
 	public MonthCostBussiness() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 	public Long getId() {
 		return id;
@@ -79,6 +85,7 @@ public class MonthCostBussiness implements Serializable {
 	@Override
 	public String toString() {
 		return "MonthCostBussiness [id=" + id + ", year=" + year + ", month=" + month + ", time=" + time + ", cost="
-				+ cost + ", ip=" + ip + ", payType=" + payType + ", accout=" + accout + "]";
+				+ cost + ", ip=" + ip + ", payType=" + payType + ", accout=" + accout + ", bussiness=" + bussiness
+				+ ", accountId=" + accountId + "]";
 	}
 }

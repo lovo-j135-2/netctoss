@@ -53,23 +53,22 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<!-- 给类取类别名 -->
-		<property name="typeAliasesPackage" value="lovo.j135_2.netctoss.usermag.beans;
+		<property name="typeAliasesPackage" value="
+			lovo.j135_2.netctoss.usermag.beans;
 			lovo.j135_2.netctoss.billmag.beans;
 			lovo.j135_2.netctoss.accoutmag.beans;
 			lovo.j135_2.netctoss.paymag.beans;
 			lovo.j135_2.netctoss.dmsmag.beans;
 			lovo.j135_2.netctoss.labmag.beans;
 			lovo.j135_2.netctoss.managermag.beans;
-			lovo.j135_2.netctoss.rightmag.beans;
-			lovo.j135_2.netctoss.logmag.beans
-			lovo.j135_2.netctoss.rightmag.beans
-			">
+			lovo.j135_2.netctoss.rightmag.beans">
 		</property>
 	</bean>
 	
 	<!-- 第三步，配置SQL映射器的扫描 -->
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="lovo.j135_2.netctoss.paymag.mapper;
+		<property name="basePackage" value="
+			lovo.j135_2.netctoss.paymag.mapper;
 			lovo.j135_2.netctoss.loginmag.mapper;
 			lovo.j135_2.netctoss.usermag.mapper;
 			lovo.j135_2.netctoss.accoutmag.mapper;
@@ -77,7 +76,9 @@
 			lovo.j135_2.netctoss.labmag.mapper;
 			lovo.j135_2.netctoss.managermag.mapper;
 			lovo.j135_2.netctoss.logmag.mapper;
-			lovo.j135_2.netctoss.rightmag.mapper">
+			lovo.j135_2.netctoss.rightmag.mapper;
+			lovo.j135_2.netctoss.billmag.mapper
+			">
 		</property>
 		
 		<!-- 将SQL映射与Session进行关联 -->
@@ -126,6 +127,7 @@
 	<!-- 给定时任务类命名 -->
      <bean id="accoutTimerTask" class="lovo.j135_2.netctoss.accoutmag.timer.AccoutTimerTask" />
      <bean id="labDayFilesTimerTask" class="lovo.j135_2.netctoss.labmag.timer.LabDayFilesTimerTask" />
+     <bean id="billTimerTask" class="lovo.j135_2.netctoss.billmag.timer.BillTimerTask" />
      
      <!-- 配置定时任务执行 -->
      <task:scheduled-tasks>   
@@ -149,8 +151,9 @@
 			天（星期）（1~7 1=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT）
 			年份（1970－2099） 
 		-->
-        <task:scheduled ref="accoutTimerTask" method="job2" cron="59 59 23 * * ?"/>  
+        <task:scheduled ref="accoutTimerTask" method="job2" cron="59 59 23 * * ?"/>
         <task:scheduled ref="labDayFilesTimerTask" method="addDayLabFilesEndOfTheMonth" cron="59 59 23 * * ?"/>  
+        <task:scheduled ref="billTimerTask" method="insertDayCostBusinessDetailEndTheMonth" cron="59 59 23 * * ?"/>
 	</task:scheduled-tasks>
 	
 	<aop:config>

@@ -87,4 +87,7 @@ public interface BusinessMapper {
 		@Result(property="lab",column="lab",javaType=Lab.class,one=@One(fetchType=FetchType.LAZY,select="queryLabById"))
 	})
 	public List<Business> queryBusinessByPager(@Param("pager")Pager pager)throws Exception;
+	
+	
+	public Business findBusinessContainLabAndAccountAndPayByBusiId(@Param("id")Long id) throws Exception;
 }

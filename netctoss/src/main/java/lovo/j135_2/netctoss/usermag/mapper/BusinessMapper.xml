@@ -8,4 +8,23 @@
 		<result property="password" column="password" javaType="java.lang.String"/>
 		
 	</resultMap>
+	
+	<resultMap type="Business" id="businessMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="business_name" column="business_name" javaType="java.lang.String"/>
+		<result property="password" column="password" javaType="java.lang.String"/>
+		<association  property="fk_accountuser_id" javaType="AcconutUser" column="fk_accountuser_id"
+			select="lovo.j135_2.netctoss.usermag.mapper.AcconutUserMapper.queryAcconutUserById">
+		</association>
+		<association property="pay" javaType="Pay" column="fk_pay_id"  
+		select="lovo.j135_2.netctoss.paymag.mapper.PayMapper.findPayById"></association>
+		<association property="lab" javaType="Lab" column="fk_lab_id" 
+			select="lovo.j135_2.netctoss.usermag.mapper.LabMapper.findLabById"></association>
+	</resultMap>
+	
+	<select id="findBusinessContainLabAndAccountAndPayByBusiId" resultMap="businessMap">
+		SELECT * from t_business as b LEFT JOIN t_accountuser as a on  
+		b.fk_accountuser_id=a.id LEFT JOIN t_lab as lab on lab.id=b.fk_lab_id 
+		LEFT JOIN t_pay as p on b.fk_pay_id=p.id WHERE b.id=#{id}
+	</select>
 </mapper>

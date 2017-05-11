@@ -103,7 +103,6 @@ public class PayController {
 
 	@RequestMapping(value = "/updatePayStatus", produces = "application/json;charset=utf-8")
 	public MessagePay updatePayStatus(@RequestBody Pay pay) {
-		System.out.println(pay);
 		MessagePay mes = new MessagePay();
 		try {
 			int num = payServiceImpl.updatePayStatus(pay);
@@ -122,8 +121,6 @@ public class PayController {
 	public PagePay findPaysByDate(@RequestParam(value="page")String page,
 			@RequestParam(value="rows")String rows,
 			@RequestParam(value="data[]")String[] data) {
-		System.out.println(page);
-		System.out.println(data);
 		PagePay pagePay = new PagePay();
 		pagePay.setPage(Integer.parseInt(page));
 		pagePay.setLines(Integer.parseInt(rows));
