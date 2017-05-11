@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>电信实验室租赁服务计费系统</title>
     <link href="<%=basePath%>static/css/base.css" rel="stylesheet">
-    <link href="<%=basePath%>static/css/login/login.css" rel="stylesheet">
+    <link href="<%=basePath%>static/css/login.css" rel="stylesheet">
 </head> 
 <body>
 	<div class="login-hd">

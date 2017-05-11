@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查看用户个人信息</title>
+<title>修改管理员密码</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/css/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/easy_ui-1.5.2/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/demo/demo.css">
@@ -20,22 +20,21 @@
 <script type="text/javascript" src="<%=basePath%>static/js/jquery.json-2.4.js"></script>
 </head>
 <body>	
-	  <div id="w1" class="easyui-window" title="查看用户个人信息" data-options="iconCls:'icon-save'" style="width:600px;height:400px;padding:5px;">
+	 <div id="u2" class="easyui-window" title="修改管理员密码" data-options="iconCls:'icon-save'" style="width:500px;height:300px;padding:5px;">
 		<div class="easyui-layout" data-options="fit:true">
+			
 			<div data-options="region:'center'" style="padding:10px;">
-			<h2>用户个人信息</h2>
-			<label style="color:blue">真实姓名:&nbsp;</label><span id=name></span>
+			<h2>密码修改</h2>
+			
+			<label>请重置您的密码</label> <input id="updateManagerPwd" name="pwd1" 
+				class="easyui-validatebox" missingMessage="不能为空" required="true">
+				<span id="updatePwd1"></span>
 			<br><br><br>
-			<label style="color:blue">身份证号:&nbsp;</label><span id=idCard></span>
+			<label>请再次输入密码</label> <input id="updateManagerPwdAgain" name="pwd2" 
+				class="easyui-validatebox" missingMessage="不能为空" required="true">
+				<span id="updatePwd2"></span>
 			<br><br><br>
-			<label style="color:blue">账务账号:&nbsp;</label><span id=accountUser></span>
-			<br><br><br>
-			<label style="color:blue">联系电话:&nbsp;</label><span id=phone></span>
-			<br><br><br>
-			<label style="color:blue">qq&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</label><span id=phone></span>
-			<br><br><br>
-			<label style="color:blue">地&nbsp;&nbsp;址:&nbsp;</label><span id=phone></span>
-			<br><br><br>
+			
 			</div>
 			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
 				<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:alert('ok')" style="width:80px">Ok</a>
@@ -43,6 +42,6 @@
 			</div>
 		</div>
 	</div>
-
+	
 </body>
 </html>

@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查看用户个人信息</title>
+<title>查看管理员信息</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/css/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/easy_ui-1.5.2/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>static/demo/demo.css">
@@ -20,21 +20,18 @@
 <script type="text/javascript" src="<%=basePath%>static/js/jquery.json-2.4.js"></script>
 </head>
 <body>	
-	  <div id="w1" class="easyui-window" title="查看用户个人信息" data-options="iconCls:'icon-save'" style="width:600px;height:400px;padding:5px;">
+	 <div id="w2" class="easyui-window" title="查看管理员信息" data-options="iconCls:'icon-save'" style="width:600px;height:400px;padding:5px;">
 		<div class="easyui-layout" data-options="fit:true">
+			
 			<div data-options="region:'center'" style="padding:10px;">
-			<h2>用户个人信息</h2>
-			<label style="color:blue">真实姓名:&nbsp;</label><span id=name></span>
+			<h2>管理员个人信息</h2>
+			<label style="color:blue">管理员姓名:&nbsp;</label><span id=name></span>
 			<br><br><br>
 			<label style="color:blue">身份证号:&nbsp;</label><span id=idCard></span>
 			<br><br><br>
-			<label style="color:blue">账务账号:&nbsp;</label><span id=accountUser></span>
+			<label style="color:blue">管理员账号:&nbsp;</label><span id=accountUser></span>
 			<br><br><br>
 			<label style="color:blue">联系电话:&nbsp;</label><span id=phone></span>
-			<br><br><br>
-			<label style="color:blue">qq&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</label><span id=phone></span>
-			<br><br><br>
-			<label style="color:blue">地&nbsp;&nbsp;址:&nbsp;</label><span id=phone></span>
 			<br><br><br>
 			</div>
 			<div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
