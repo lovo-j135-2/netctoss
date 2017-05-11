@@ -41,7 +41,7 @@
 				<th field="password" width="80" align="right">密码</th>
 				<th field="phone" width="150">电话</th>
 				<th field="postcode" width="150">邮箱</th>
-				<th field="role" formatter="forRoleName" width="150">管理员角色</th>
+				<!-- <th field="role" formatter="forRoleName" width="150">管理员角色</th>  -->
 				<!-- <th field="role" formatter="forRoleType" width="150">角色类型</th> -->
 			
 			</tr>
@@ -70,11 +70,11 @@
 			</div>
 			<div class="fitem">
 				<label>账号:</label><br> <input name="accounts"
-					class="easyui-validatebox" required="true" id="addAccounts">
+					class="easyui-validatebox"  id="addAccounts">
 			</div>
 			<div class="fitem">
 				<label>密码:</label><br> <input name="password" 
-				required="true" type="password" class="easyui-validatebox" id="addPassword">
+				 type="password" class="easyui-validatebox" id="addPassword">
 			</div>
 			<div class="fitem">
 				<label>电话:</label><br> <input name="phone" id="addPhone">
@@ -98,18 +98,59 @@
 	
 	
 	
+<!--修改管理员  -->
+		<div id="edit" class="easyui-dialog"
+		style="width: 400px; height: 280px; padding: 10px 20px" closed="true"
+		buttons="#edit-buttons">
+		<div class="ftitle"><h3>修改管理员</h4></div>
+		<form id="fm" method="post">
+			<div class="fitem">
+				<label>用户名:</label> 
+				<span id="editUserNAme" ></span>			
+			</div>
+			<br>
+			<div class="fitem">
+				<label>账号:</label><br> <input name="accounts"
+					class="easyui-validatebox"  id="editAccounts">
+			</div>
+			<div class="fitem">
+				<label>密码:</label><br> <input name="password" 
+				 type="password" class="easyui-validatebox" id="editPassword">
+			</div>
+			<div class="fitem">
+				<label>电话:</label><br> <input name="phone" id="editPhone">
+			</div>
+			<div class="fitem">
+				<label>Email:</label><br> <input name="postcode"
+					class="easyui-validatebox" validType="email" id="editPostcode">
+			</div>
+			<div class="fitem">
+			<label>角色类型</label><br><input id="editRoleName" name="dept" value="aa"> 
+	</input>
+	</div>
+		</form>
+	</div>
+	<div id="edit-buttons">
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-ok" onclick="doEdit()">修改</a> <a
+			href="javascript:void(0)" class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#edit').dialog('close')">取消</a>
+	</div>
+
 
 	
 	
 	
 	<script type="text/javascript">
-		function forRoleName(value) {
+	
+		/* function forRoleName(value) {
 			return value.name;
-		};
-		function forRoleType(value) {
+		}; */
+		
+		/* 	function forRoleType(value) {
 			return value.roleType;
 		};
-		
+		 */
 		
 		
 		

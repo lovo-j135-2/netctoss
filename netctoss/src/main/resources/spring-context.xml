@@ -60,6 +60,7 @@
 			lovo.j135_2.netctoss.paymag.beans;
 			lovo.j135_2.netctoss.dmsmag.beans;
 			lovo.j135_2.netctoss.labmag.beans;
+			lovo.j135_2.netctoss.logmag.beans;
 			lovo.j135_2.netctoss.managermag.beans;
 			lovo.j135_2.netctoss.rightmag.beans">
 		</property>
@@ -79,6 +80,7 @@
 			lovo.j135_2.netctoss.rightmag.mapper;
 			lovo.j135_2.netctoss.billmag.mapper
 			">
+
 		</property>
 		
 		<!-- 将SQL映射与Session进行关联 -->
@@ -124,6 +126,7 @@
 		</tx:attributes>
 	</tx:advice>
 	
+	
 	<!-- 给定时任务类命名 -->
      <bean id="accoutTimerTask" class="lovo.j135_2.netctoss.accoutmag.timer.AccoutTimerTask" />
      <bean id="labDayFilesTimerTask" class="lovo.j135_2.netctoss.labmag.timer.LabDayFilesTimerTask" />
@@ -160,6 +163,27 @@
 		<aop:pointcut expression="execution(* lovo.j135_2.netctoss.*mag.service.impl.*ServiceImpl.*(..))" id="serviceMethod"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
 	</aop:config>
+	
+	
+	
+	<!-- <bean id="logAspectJ" class="lovo.j135_2.netctoss.logmag.logaspectj.LogAspectJ">
+	
+	</bean>
+	
+	<aop:config>
+		<aop:aspect ref="logAspectJ">
+			<aop:pointcut expression="execution(* lovo.j135_2.netctoss.managermag.dao.impl.*.save*(..)) or 
+				execution(* lovo.j135_2.netctoss.managermag.dao.impl.*.delete*(..)) or  
+				execution(* lovo.j135_2.netctoss.managermag.dao.impl.*.update*(..))" 
+				id="test"/>
+			<aop:before method="before" pointcut-ref="test"/>
+			<aop:after method="after" pointcut-ref="test"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	
+	
+	
 	<!-- 开启自动代理 -->
 	<aop:aspectj-autoproxy/>
 </beans>

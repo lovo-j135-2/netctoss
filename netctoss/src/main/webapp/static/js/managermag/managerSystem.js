@@ -2,7 +2,7 @@
 		function newUser() {
 			$('#dlg').dialog('open').dialog('setTitle', '添加管理员');
 			$('#fm').form('clear');
-			url = 'save_user.php';
+			
 			
 
 			//添加管理员下拉框
@@ -46,7 +46,7 @@
 				
 			};
 			var json = $.toJSON(manager);//将JS对象转换为JSON对象
-			alert(json)
+			console.info(json)
 			var uri = "managermag/save";
 
 			$.ajax({
@@ -97,10 +97,87 @@
 		//修改管理员
 		function editUser() {
 			var row = $('#dg').datagrid('getSelected');
+			$('#edit').dialog('open').dialog('setTitle', '修改管理员');	
+			
+			if(row){			
+				$("#editUserNAme").html(row.name);
+				$("#editAccounts").val(row.accounts);
+				$("#editPassword").val(row.password);
+				$("#editPhone").val(row.phone);
+				$("#editPostcode").val(row.postcode);								
+				$("#editRoleName").val(row.role.name);
+				
+				console.info($("#editRoleName").val());
+				console.info(row.role.name);
+				
+			}
+			
+			//修改管理员下拉框
+			$('#editRoleName').combobox({    
+			    url:'managermag/showRole',    
+			    valueField:'id',    
+			    textField:'name'   
+			}); 
+			
 			console.info(row);
 			
 		}
 
+		function doEdit(){						
+			var row = $('#dg').datagrid('getSelected');
+			
+			var name = $("#editUserNAme").html();
+			var accounts = $("#editAccounts").val();
+			var password = $("#editPassword").val();
+			var phone = $("#editPhone").val();
+			var postcode = $("#editPostcode").val();
+			var ro = $("#editRoleName").val();	
+			if(ro==row.role.name){
+				 ro=row.role.id;
+			}else if(ro!=row.role.name){
+				ro=$("#editRoleName").val();
+			}
+			
+				console.info("下拉框值"+ro);			
+			var id = row.id;
+			console.info(row.id);
+			var role ={
+					"id":ro,
+					"name":null,
+					"roleType":null,
+					
+				};
+				
+				var manager = {
+					"id":id,
+					"name" : name,
+					"accounts" : accounts,
+					"password" : password,
+					"phone" : phone,
+					"postcode" : postcode,
+					"role" : role,
+					
+				};
+				var json = $.toJSON(manager);//将JS对象转换为JSON对象
+				console.info(json)				
+				var uri = 'managermag/update';
+				$.ajax({
+					type:"POST",
+					url:uri,
+					data:json,
+					contentType:"application/json",
+					async:true,
+					success : function(result) {
+						$.messager.show({
+							title : '提示信息',
+							msg : result.message
+						});
+
+					}
+					
+				});
+				
+		}
 		
 		
 		

@@ -158,6 +158,7 @@
 			iconCls="icon-cancel" onclick="javascript:$('#updatePay').dialog('close')">取消</a>
 	</div>
 	
+	
 
 	<script type="text/javascript"
 		src="<%=basePath%>static/js/paymag/paysystem.js"></script>

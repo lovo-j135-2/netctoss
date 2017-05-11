@@ -10,8 +10,6 @@ import lovo.j135_2.netctoss.managermag.beans.Manager;
 import lovo.j135_2.netctoss.managermag.beans.PageManager;
 import lovo.j135_2.netctoss.managermag.dao.ManagerDao;
 import lovo.j135_2.netctoss.managermag.mapper.ManagerMapper;
-import lovo.j135_2.netctoss.rightmag.beans.Role;
-
 
 @Repository
 public class ManagerDaoImpl implements ManagerDao {
@@ -53,13 +51,6 @@ public class ManagerDaoImpl implements ManagerDao {
 	public int getManagerCount() throws Exception {
 		// TODO Auto-generated method stub
 		return managerMapper.getManagerCount();
-	}
-
-	//注释
-	@Override
-	public List<Role> getAllRole() throws Exception {
-		// TODO Auto-generated method stub
-		return managerMapper.getAllRole();
 	}
 
 }

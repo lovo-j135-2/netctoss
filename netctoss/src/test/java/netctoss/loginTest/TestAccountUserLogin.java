@@ -36,7 +36,7 @@ public class TestAccountUserLogin {
 
 	}
 
-	@Ignore
+	@Test
 	public void testGetAccountUser() {
 		AcconutUser ac = new AcconutUser();
 		ac.setAccount_name("xianchengduo");
@@ -53,7 +53,7 @@ public class TestAccountUserLogin {
 
 	}
 	
-	@Test
+	@Ignore
 	public void testUpdateAccountUser(){
 		AcconutUser ac=new AcconutUser();
 		ac.setAccount_name("xianhua");

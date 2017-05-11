@@ -1,7 +1,5 @@
 package lovo.j135_2.netctoss.managermag.service.impl;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,7 +10,6 @@ import lovo.j135_2.netctoss.managermag.beans.Manager;
 import lovo.j135_2.netctoss.managermag.beans.PageManager;
 import lovo.j135_2.netctoss.managermag.dao.ManagerDao;
 import lovo.j135_2.netctoss.managermag.service.ManagerService;
-import lovo.j135_2.netctoss.rightmag.beans.Role;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -58,13 +55,6 @@ public class ManagerServiceImpl implements ManagerService {
 	public int getManagerCount()throws Exception {
 		// TODO Auto-generated method stub
 		return managerDaoImpl.getManagerCount();
-	}
-
-	@Override
-	public List<Role> getAllRole() throws Exception {
-		// TODO Auto-generated method stub
-	
-		return managerDaoImpl.getAllRole();
 	}
 
 }
