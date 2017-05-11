@@ -42,4 +42,41 @@ public class LabDayFilesDaoImpl implements LabDayFilesDao {
 		// TODO Auto-generated method stub
 		return lbm.findLabYearMesByYear(year, pageDay.getFromLine(), pageDay.getLines());
 	}
+
+	@Override
+	public int findLabMonthCountByYearAndMonth(int year, int month) throws Exception {
+		// TODO Auto-generated method stub
+		return lbm.findLabMonthCountByYearAndMonth(year, month);
+	}
+
+	@Override
+	public int findLabDayCountByYearAndMonth(int year, int month) throws Exception {
+		// TODO Auto-generated method stub
+		return lbm.findLabMonthCountByYearAndMonth(year, month);
+	}
+
+	@Override
+	public int findLabDayCountByYearAndMonth(int year, int month, String ip) throws Exception {
+		// TODO Auto-generated method stub
+		return lbm.findLabDayCountByYearAndMonth(year, month, ip);
+	}
+
+	@Override
+	public int findLabYearCountByYear(int year) throws Exception {
+		// TODO Auto-generated method stub
+		return lbm.findLabYearCountByYear(year);
+	}
+
+	@Override
+	public List<DayTimeFiles> findLabYearsMonthMesByYearAndIp(int year, String ip, PageDayTimeFiles pageDay)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return lbm.findLabYearsMonthMesByYearAndIp(year, ip, pageDay.getFromLine(), pageDay.getLines());
+	}
+
+	@Override
+	public int findLabYearsMonthCountByYearAndIp(int year, String ip) throws Exception {
+		// TODO Auto-generated method stub
+		return lbm.findLabYearsMonthCountByYearAndIp(year, ip);
+	}
 }

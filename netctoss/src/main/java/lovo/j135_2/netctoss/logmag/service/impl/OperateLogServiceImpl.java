@@ -1,5 +1,7 @@
 package lovo.j135_2.netctoss.logmag.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,6 +20,13 @@ public class OperateLogServiceImpl implements IOperateLogService{
 	public void saveOperateLog(OperateLogBean operateLog) {
 		
 		operateLogDaoImpl.saveOperateLog(operateLog);
+	}
+
+	@Override
+	public List<OperateLogBean> findAllOperateLogBeansByAccountAndOperateTypeAndBeginTimeAndEndTime(String account,
+			String type, String beginTime, String endTime) {
+		// TODO Auto-generated method stub
+		return operateLogDaoImpl.findAllOperateLogBeansByAccountAndOperateTypeAndBeginTimeAndEndTime(account, type, beginTime, endTime);
 	}
 
 }

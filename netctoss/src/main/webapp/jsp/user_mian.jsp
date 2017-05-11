@@ -14,7 +14,6 @@
 <link href="<%=basePath%>static/css/platform.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=basePath%>static/css/easyui.css">
 <link rel="stylesheet" href="<%=basePath%>static/css/mian.css">
-
 </head> 
 <body>
 

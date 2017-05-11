@@ -52,7 +52,7 @@ public class TestManagerLoginService {
 		}
 
 	}
-	@Ignore
+	@Test
 	public void testGetManagerById() {
 
 		try {
@@ -71,7 +71,7 @@ public class TestManagerLoginService {
 
 	}
 
-	@Test
+	@Ignore
 	public void testUpdateManager() {
 		Manager ma = new Manager();
 		ma.setAccounts("3333333");

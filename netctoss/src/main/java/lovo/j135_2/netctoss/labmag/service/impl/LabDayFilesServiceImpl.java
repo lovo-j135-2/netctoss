@@ -53,6 +53,7 @@ public class LabDayFilesServiceImpl implements LabDayFilesService {
 			throws Exception {
 		// TODO Auto-generated method stub
 		pageDayTime.setRows(labDayFilesDaoImpl.findLabDayMesByYearAndMonth(year, month, ip, pageDayTime));
+		pageDayTime.setTotal(labDayFilesDaoImpl.findLabDayCountByYearAndMonth(year, month, ip));
 		return pageDayTime;
 	}
 
@@ -61,6 +62,7 @@ public class LabDayFilesServiceImpl implements LabDayFilesService {
 			throws Exception {
 		// TODO Auto-generated method stub
 		pageDayTime.setRows(labDayFilesDaoImpl.findLabMonthMesByYearAndMonth(year, month, pageDayTime));
+		pageDayTime.setTotal(labDayFilesDaoImpl.findLabMonthCountByYearAndMonth(year, month));
 		return pageDayTime;
 	}
 
@@ -68,6 +70,16 @@ public class LabDayFilesServiceImpl implements LabDayFilesService {
 	public PageDayTimeFiles findLabYearMesByYear(int year, PageDayTimeFiles pageDayTime) throws Exception {
 		// TODO Auto-generated method stub
 		pageDayTime.setRows(labDayFilesDaoImpl.findLabYearMesByYear(year, pageDayTime));
+		pageDayTime.setTotal(labDayFilesDaoImpl.findLabYearCountByYear(year));
+		return pageDayTime;
+	}
+
+	@Override
+	public PageDayTimeFiles findLabYearsMonthCountByYearAndIp(int year, String ip, PageDayTimeFiles pageDayTime)
+			throws Exception {
+		// TODO Auto-generated method stub
+		pageDayTime.setRows(labDayFilesDaoImpl.findLabYearsMonthMesByYearAndIp(year, ip, pageDayTime));
+		pageDayTime.setTotal(labDayFilesDaoImpl.findLabYearsMonthCountByYearAndIp(year, ip));
 		return pageDayTime;
 	}
 

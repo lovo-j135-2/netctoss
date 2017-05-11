@@ -18,15 +18,6 @@
 </head>
 <body>
 
-	<input type="hidden" value="1" id="id">
-	<span>用户名:</span> <input id="accounts">
-	<span>密码:</span> <input id="password">
-	<span>验证码:</span> <input id="ms">
 	
-    <button id="one">管理员登录</button>
-	<button id="two">修改密码</button>
-	<button id="three">查看管理员信息</button>
-	<button id="four">退出系统</button>
- 
 </body>
 </html>
