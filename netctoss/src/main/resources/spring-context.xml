@@ -159,6 +159,27 @@
 		<aop:pointcut expression="execution(* lovo.j135_2.netctoss.*mag.service.impl.*ServiceImpl.*(..))" id="serviceMethod"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
 	</aop:config>
+	
+	
+	
+	<!-- <bean id="logAspectJ" class="lovo.j135_2.netctoss.logmag.logaspectj.LogAspectJ">
+	
+	</bean>
+	
+	<aop:config>
+		<aop:aspect ref="logAspectJ">
+			<aop:pointcut expression="execution(* lovo.j135_2.netctoss.managermag.dao.impl.*.save*(..)) or 
+				execution(* lovo.j135_2.netctoss.managermag.dao.impl.*.delete*(..)) or  
+				execution(* lovo.j135_2.netctoss.managermag.dao.impl.*.update*(..))" 
+				id="test"/>
+			<aop:before method="before" pointcut-ref="test"/>
+			<aop:after method="after" pointcut-ref="test"/>
+		</aop:aspect>
+	</aop:config> -->
+	
+	
+	
+	
 	<!-- 开启自动代理 -->
 	<aop:aspectj-autoproxy/>
 </beans>
