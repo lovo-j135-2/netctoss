@@ -51,4 +51,10 @@ public class PayServiceImpl implements PayService {
 		return pagePay;
 	}
 
+	@Override
+	public Pay findPayWithBusinessById(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return payDaoImpl.findPayWithBusinessById(id);
+	}
+
 }

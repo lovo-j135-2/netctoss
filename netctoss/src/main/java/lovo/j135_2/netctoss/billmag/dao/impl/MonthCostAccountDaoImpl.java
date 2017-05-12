@@ -38,4 +38,10 @@ public class MonthCostAccountDaoImpl implements MonthCostAccountDao {
 		return mam.findMonthCostAccountCountByIdOrAccountMesOrYearAndMonth(user, time);
 	}
 
+	@Override
+	public int updatePayStatusByIdAndYearAndMonth(MonthCostAccount cost) throws Exception {
+		// TODO Auto-generated method stub
+		return mam.updatePayStatusByIdAndYearAndMonth(cost);
+	}
+
 }

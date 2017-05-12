@@ -104,6 +104,7 @@ public class PayController {
 	@RequestMapping(value = "/updatePayStatus", produces = "application/json;charset=utf-8")
 	public MessagePay updatePayStatus(@RequestBody Pay pay) {
 		MessagePay mes = new MessagePay();
+		pay.setPayStatus(1);
 		try {
 			int num = payServiceImpl.updatePayStatus(pay);
 			mes.setFlag(true);
@@ -139,5 +140,30 @@ public class PayController {
 			e.printStackTrace();
 		}
 		return pagePay;
+	}
+	
+	
+	@RequestMapping(value = "/pausePay")
+	public MessagePay pausePay(@RequestParam(value="id")String id) {
+		try {
+			Pay pays=payServiceImpl.findPayWithBusinessById(new Long(id));
+			if(pays.getList().size()==0){
+				Pay pay=new Pay();
+				pay.setPayStatus(0);
+				pay.setId(new Long(id));
+				int num=payServiceImpl.updatePayStatus(pay);
+				if(num!=0){
+					return new MessagePay("资费已暂停", true);
+				}else{
+					return new MessagePay("服务器繁忙，请稍后重试", false);
+				}
+			}else{
+				return new MessagePay("资费已被使用，不能暂停", false);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new MessagePay("服务器繁忙，请稍后重试", false); 
 	}
 }

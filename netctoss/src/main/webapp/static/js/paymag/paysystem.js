@@ -334,11 +334,11 @@ function doSearch() {
 	var options = $("#dg" ).datagrid("getPager" ).data("pagination" ).options;
     var page = options.pageNumber;
     var rows = options.pageSize;
-	if(begin==null){
-		begin=1970-01-01;
+	if(begin==null||begin==""){
+		begin='1970-01-01';
 	}
-	if(end==null){
-		begin=dateTime;
+	if(end==null||end==""){
+		end=dateTime;
 	}
 	var dateArray=[begin,end];
 	$.ajax({
@@ -354,6 +354,75 @@ function doSearch() {
 	});
 }
 
+
+//暂停资费
+function pausePay() {
+	var value = $("#dg").datagrid('getSelected');
+	if(value!=null){
+		if(value.payStatus!=0){
+			$.ajax({
+				type:"post",
+				url:"paymag/pausePay",
+				async:true,
+				data:{"id":value.id},
+				dataType: 'json',
+				success:function(mes){
+					if(mes.flag==true){
+						// 在上方中部显示消息窗口
+						$.messager.show({
+							title:'提示',
+							msg:mes.message,
+							showType:'show',
+							style:{
+								right:'',
+								top:document.body.scrollTop+document.documentElement.scrollTop,
+								bottom:''
+							}
+						});
+						$('#dg').datagrid('reload');
+					}else{
+						// 在上方中部显示消息窗口
+						$.messager.show({
+							title:'提示',
+							msg:mes.message,
+							showType:'show',
+							style:{
+								right:'',
+								top:document.body.scrollTop+document.documentElement.scrollTop,
+								bottom:''
+							}
+						});
+					}
+				}
+			});
+		}else{
+			// 在上方中部显示消息窗口
+			$.messager.show({
+				title:'提示',
+				msg:'资费已是暂停状态',
+				showType:'show',
+				style:{
+					right:'',
+					top:document.body.scrollTop+document.documentElement.scrollTop,
+					bottom:''
+				}
+			});
+		}
+		
+	}else{
+		// 在上方中部显示消息窗口
+		$.messager.show({
+			title:'提示',
+			msg:'请选择一条数据',
+			showType:'show',
+			style:{
+				right:'',
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+				bottom:''
+			}
+		});
+	}
+}
 
 // 后台到前台的日期处理
 Date.prototype.format = function (format) {  

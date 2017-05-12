@@ -53,7 +53,7 @@ public interface PayMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	@Update(value="update t_pay set pay_status=1 where id=#{pay.id}")
+	@Update(value="update t_pay set pay_status=#{pay.payStatus} where id=#{pay.id}")
 	public int updatePayStatus(@Param("pay")Pay pay) throws Exception;
 
 	/**
@@ -100,4 +100,6 @@ public interface PayMapper {
 		@Result(property="createTime",column="create_time",javaType=Date.class)
 	})
 	public Pay findPayById(Long id) throws Exception;
+	
+	public Pay findPayWithBusinessById(@Param("id")Long id) throws Exception;
 }

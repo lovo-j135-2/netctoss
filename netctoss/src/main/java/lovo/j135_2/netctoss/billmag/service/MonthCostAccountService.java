@@ -23,4 +23,6 @@ public interface MonthCostAccountService {
 	 */
 	public PageMonthCostAccount findMonthCostAccountByIdOrAccountMesOrYearAndMonth(AcconutUser user,
 			MonthCostAccount time,PageMonthCostAccount page) throws Exception;
+	
+	public int updatePayStatusByIdAndYearAndMonth(MonthCostAccount cost) throws Exception;
 }

@@ -70,7 +70,7 @@
 			onclick="updatePayStatus()">开通资费</a>
 		
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-pwd" plain="true"
-			onclick="destroyPay()">暂停资费</a>
+			onclick="pausePay()">暂停资费</a>
 	</div>
 
 

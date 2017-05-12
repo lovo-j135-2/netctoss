@@ -51,7 +51,7 @@
 			<span>用户名</span> 
 			<input id="realName" class="easyui-textbox" data-options="iconCls:'icon-man'" style="width:150px">&nbsp;&nbsp;
 			<span>账务账号</span> 
-			<input id="accountId" class="easyui-textbox" data-options="iconCls:'icon-billing'" style="width:150px">&nbsp;&nbsp;
+			<input id="accountName" class="easyui-textbox" data-options="iconCls:'icon-billing'" style="width:150px">&nbsp;&nbsp;
 			<a href="javascript:void(0)" class="easyui-linkbutton" plain="true"
 				onclick="doSearch()">查询</a>
 	</div><br/>
@@ -62,19 +62,97 @@
 		singleSelect="true">
 		<thead>
 			<tr>
-				<th data-options="field:'payName',width:100">资费名称</th>
-				<th data-options="field:'payType',width:100">资费类型</th>
-				<th data-options="field:'payTime',width:100,align:'right'">基本时长</th>
-				<th data-options="field:'basicCost',width:100,align:'right'">基本费用</th>
-				<th data-options="field:'unitCost',width:100,align:'right'">单位费用（元/月）</th>
-				<th data-options="field:'costDiscrip',width:100,align:'right'">资费说明</th>
-				<th data-options="field:'payStatus',width:100,align:'right'">资费状态</th>
-				<th data-options="field:'createTime',width:100,align:'right'">创建时间</th>
+				<th data-options="field:'real_name',width:100">姓名</th>
+				<th data-options="field:'id_num',width:100">身份证</th>
+				<th data-options="field:'account_name',width:100,align:'right'">账务账号</th>
+				<th data-options="field:'monthCostAccount.cost',width:100,align:'right',formatter:forCost">本月消费（RMB）</th>
+				<th data-options="field:'monthCostAccount.month',width:100,align:'right',formatter:forMonth">月份</th>
+				<!-- <th data-options="field:'monthCostAccount.payWay',width:100,align:'right',formatter:forPayWay">支付方式</th> -->
+				<th data-options="field:'monthCostAccount.payStatus',width:100,align:'right',formatter:forPayStatus">资费状态</th>
 			</tr>
 		</thead>
 	</table>
+	<div id="toolbar">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true"
+			onclick="showDetailWin()">账单详细信息</a>
+			
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+			onclick="payWin()">支付</a> 
+	</div>
+	
+	
+	<!-- 显示详细账单信息窗口 -->
+	<div id="showDetail" class="easyui-dialog"
+		style="width: 600px; height: 400px; padding: 10px 20px" closed="true"
+		title="账单明细" buttons="#dlg-buttons">
+		<label id="accountID"></label>
+		<table id="detailTable"  class="easyui-datagrid"
+					style="width: auto; height: auto" pagination="true"
+					toolbar="#toolbar" rownumbers="true" fitColumns="true"
+					singleSelect="true">
+				<thead>
+					<tr>
+						<th data-options="field:'bussiness.id',width:50,formatter:forBusiId">业务账号</th>
+						<th data-options="field:'ip',width:50">服务器IP</th>
+						<th data-options="field:'time',width:50">时长</th>
+						<th data-options="field:'cost',width:50">费用</th>
+						<th data-options="field:'payType',width:50">支付状态</th>
+					</tr>
+				</thead>
+		</table>
+	</div>
+	<div id="dlg-buttons">
+		<!-- <a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-ok" onclick="savePay()">确定</a> --> 
+		<a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#showDetail').dialog('close')">取消</a>
+	</div>
+	
+	
+	<!-- 显示支付窗口 -->
+	<div id="payBill" class="easyui-dialog"
+		style="width: 350px; height: 200px; padding: 10px 20px" closed="true"
+		title="支付本月账单" buttons="#dlg-buttons">
+		<select id="payWay" class="easyui-combobox" name="state" label="月" labelPosition="top" style="width:100px;float:left;">
+					<option value="1">支付宝</option>
+					<option value="2">微信</option>
+					<option value="3">银联</option>
+			</select>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-ok" onclick="pay()">确定</a>
+		<a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-cancel" onclick="javascript:$('#payBill').dialog('close')">取消</a>
+	</div>
 
 	<script type="text/javascript" src="<%=basePath%>static/js/billmag/billsystem.js"></script>
 	
+	<script type="text/javascript">
+		function forCost(value,rec) {
+			return rec.monthCostAccount['cost'];
+		};
+		function forMonth(value,rec) {
+			return rec.monthCostAccount.month;
+		};
+		function forPayWay(value,rec) {
+			var payWay=rec.monthCostAccount.payWay
+			return rec.monthCostAccount.payWay;
+		};
+		function forPayStatus(value,rec) {
+			value=rec.monthCostAccount.payStatus;
+			if (value == 0){
+				return rec.monthCostAccount.payStatus+'未支付';
+			} else if(value == 1){
+				return rec.monthCostAccount.payStatus+"已支付";
+			}
+		};
+		
+		function forBusiId(value,rec) {
+			return rec.bussiness.id;
+		};
+		
+		
+	</script>
 </body>
 </html>

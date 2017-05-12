@@ -32,5 +32,11 @@ public interface MonthCostAccountDao {
 	 */
 	public int findMonthCostAccountCountByIdOrAccountMesOrYearAndMonth(AcconutUser user,MonthCostAccount time) throws Exception;
 	
-	
+	/**
+	 * 支付费用，将费用状态改为已支付（数据库字段为1），同时记录支付的方式（1为支付宝，2为微信，3为银联）
+	 * @param cost
+	 * @return
+	 * @throws Exception
+	 */
+	public int updatePayStatusByIdAndYearAndMonth(MonthCostAccount cost) throws Exception;
 }

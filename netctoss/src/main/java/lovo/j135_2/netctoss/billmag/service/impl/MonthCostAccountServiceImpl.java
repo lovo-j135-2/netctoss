@@ -46,4 +46,10 @@ public class MonthCostAccountServiceImpl implements MonthCostAccountService {
 		return page;
 	}
 
+	@Override
+	public int updatePayStatusByIdAndYearAndMonth(MonthCostAccount cost) throws Exception {
+		// TODO Auto-generated method stub
+		return monthCostAccountDaoImpl.updatePayStatusByIdAndYearAndMonth(cost);
+	}
+
 }

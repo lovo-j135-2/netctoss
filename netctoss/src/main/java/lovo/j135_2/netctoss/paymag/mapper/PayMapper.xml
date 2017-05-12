@@ -15,6 +15,23 @@
 		<result property="createTime" column="create_time" javaType="java.util.Date"/>
 	</resultMap>
 	
+	
+	<resultMap type="Pay" id="payStausMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="payName" column="pay_name" javaType="java.lang.String"/>
+		<result property="payType" column="pay_type" javaType="java.lang.String"/>
+		<result property="payTime" column="pay_time" javaType="int"/>
+		<result property="basicCost" column="basic_cost" javaType="java.math.BigDecimal"/>
+		<result property="unitCost" column="unit_cost" javaType="java.math.BigDecimal"/>
+		<result property="costDiscrip" column="cost_discription" javaType="java.lang.String"/>
+		<result property="payStatus" column="pay_status" javaType="int"/>
+		<result property="createTime" column="create_time" javaType="java.util.Date"/>
+		<collection property="list" column="id" javaType="java.util.List"
+			select="findBusinessByPayId"		
+		>
+		</collection>
+	</resultMap>
+	
 	<update id="updatePay" parameterType="Pay">
 		update t_pay  
 		<set>
@@ -67,5 +84,14 @@
 			</foreach>
 		</where>
 		limit #{pagePay.fromLine},#{pagePay.lines}
+	</select>
+	
+	<select id="findPayWithBusinessById" resultMap="payStausMap">
+		SELECT DISTINCT p.id,b.business_name  from t_pay as p LEFT JOIN t_business 
+		as b on p.id=b.fk_pay_id where p.id=#{id}
+	</select>
+	
+	<select id="findBusinessByPayId" resultType="Business">
+		select business_name from t_business where fk_pay_id =#{id}
 	</select>
 </mapper>

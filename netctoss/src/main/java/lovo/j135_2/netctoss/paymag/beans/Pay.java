@@ -3,6 +3,9 @@ package lovo.j135_2.netctoss.paymag.beans;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import lovo.j135_2.netctoss.usermag.beans.Business;
 
 public class Pay implements Serializable {
 	private Long id;
@@ -14,6 +17,7 @@ public class Pay implements Serializable {
 	private String costDiscrip;
 	private int payStatus;
 	private Date createTime;
+	private List<Business> list;
 	public Pay() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,6 +36,14 @@ public class Pay implements Serializable {
 	}
 
 	
+	public List<Business> getList() {
+		return list;
+	}
+
+	public void setList(List<Business> list) {
+		this.list = list;
+	}
+
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -90,11 +102,11 @@ public class Pay implements Serializable {
 	public void setPayStatus(int payStatus) {
 		this.payStatus = payStatus;
 	}
+
 	@Override
 	public String toString() {
 		return "Pay [id=" + id + ", payName=" + payName + ", payType=" + payType + ", payTime=" + payTime
 				+ ", basicCost=" + basicCost + ", unitCost=" + unitCost + ", costDiscrip=" + costDiscrip
-				+ ", payStatus=" + payStatus + ", createTime=" + createTime + "]";
+				+ ", payStatus=" + payStatus + ", createTime=" + createTime + ", list=" + list + "]";
 	}
-	
 }

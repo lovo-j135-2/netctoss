@@ -1,7 +1,7 @@
 window.onload=function(){
 	
 	$(function() {
-		var pager = $('#monthTable').datagrid().datagrid('getPager');
+		var pager = $('#dg').datagrid().datagrid('getPager');
 		var options = $(pager).data("pagination").options;  
 		// 将行数变为可选择的行数
 		$(pager).pagination({
@@ -11,6 +11,15 @@ window.onload=function(){
     		afterPageText: '页    共 {pages} 页',  
     		displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
 		});
+//		columns: [[  
+//			{field: 'real_name', title: '姓名', width: 100,align: 'center'},
+//			{field: 'id_num', title: '身份证', width: 100,align: 'center'},
+//			{field: 'account_name', title: '账务账号', width: 100,align: 'center'},
+//			{field: 'monthCostAccount', title: '本月消费（RMB）', width: 100,align: 'center',formatter: forCost},
+//			{field: 'monthCostAccount', title: '月份', width: 100,align: 'center',formatter: forMonth},
+//			{field: 'monthCostAccount', title: '支付方式', width: 100,align: 'center',formatter: forPayWay},
+//			{field: 'monthCostAccount', title: '资费状态', width: 100,align: 'center',formatter: forPayStatus},
+//        ]]   
 	})
 }
 
@@ -30,128 +39,149 @@ function loadSelect(){
 
 loadSelect();
 
-//月份表格查询
-function doSearchMonth() {
-	var options = $("#monthTable").datagrid("getPager" ).data("pagination" ).options;
+function showDetailWin(){
+	var value = $("#dg").datagrid('getSelected');
+	var options = $("#detailTable").datagrid("getPager" ).data("pagination" ).options;
     var page = options.pageNumber;
     var rows = options.pageSize;
-	$.ajax({
-		type:"post",
-		url:"accountmag/searchMonth",
-		async:true,
-		data:{"year":$("#year").val(),"month":$("#month").val(),"page":page,"rows":rows},
-		dataType : "json",
-		success:function(mes){
-			$('#monthTable').datagrid('loadData',mes);
-		}
-	})
-}
-
-//月份表格双击弹出每天实验室明细
-$('#monthTable').datagrid({
-    onDblClickRow: function (rowIndex, rowData) {
-    	$("#dayDialog").dialog({closed:false});
-    	$("#dayTable").form("clear");
-    	var options = $("#dayTable" ).datagrid("getPager" ).data("pagination" ).options;
-        var page = options.pageNumber;
-        var rows = options.pageSize;
-        var value=$("#monthTable").datagrid('getSelected');
-    	$.ajax({
-    		type:"post",
-    		url:"accountmag/searchDay",
-    		async:true,
-    		data:{"ip":value.ip,"year":$("#year").val(),"month":$("#month").val(),"page":page,"rows":rows},
-    		dataType : "json",
-    		success:function(mes){
-    			$('#dayTable').datagrid('loadData',mes);
-    		}
-    	})
-    }
-});
-
-
-
-
-//以下为按年查询模块
-
-//加载按年查询账务的年份下拉框  
-function loadYearSelect(){
-	var date=new Date();
-	var dateTime=date.getFullYear();
-	var beginYear='2017';
-	var length= parseInt(dateTime)- parseInt(beginYear);
-	$("<option></option>").val(beginYear).text(beginYear).appendTo($("#yearByYear"));
-	var year=parseInt(beginYear)+1;
-	for (var i = 0; i < length; i++) {
-		$("<option></option>").val(year).text(year).appendTo($("#yearByYear"));
-		year++;
+	if(value!=null){
+		$('#showDetail').dialog('open');
+		$('#detailTable').form('clear');
+		$("#accountID").text();
+		$("#accountID").text("账号："+value.account_name);
+		$.ajax({
+			type:"post",
+			url:"billmag/searchBusinessMonthDetail",
+			async:true,
+			data:{"year":$("#year").val(),
+					"month":$("#month").val(),
+					"page":page,"rows":rows,
+					"id":value.id
+			},
+			dataType : "json",
+			success:function(mes){
+				$('#detailTable').datagrid('loadData',mes);
+			}
+		})
+	}else{
+		// 在上方中部显示消息窗口
+		$.messager.show({
+			title:'提示',
+			msg:'请选择一条信息',
+			showType:'show',
+			style:{
+				right:'',
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+				bottom:''
+			}
+		});
 	}
 }
 
-loadYearSelect();
+function payWin(){
+	var value = $("#dg").datagrid('getSelected');
+	if(value!=null){
+		if(value.monthCostAccount.payStatus==0){
+			$('#payBill').dialog('open');
+		}else{
+			// 在上方中部显示消息窗口
+			$.messager.show({
+				title:'提示',
+				msg:'感谢，本月费用已支付',
+				showType:'show',
+				style:{
+					right:'',
+					top:document.body.scrollTop+document.documentElement.scrollTop,
+					bottom:''
+				}
+			});
+		}
+		
+	}else{
+		// 在上方中部显示消息窗口
+		$.messager.show({
+			title:'提示',
+			msg:'请选择一条信息',
+			showType:'show',
+			style:{
+				right:'',
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+				bottom:''
+			}
+		});
+	}
+}
 
-//月份表格查询
-function doSearchYear() {
-	var options = $("#yearTable" ).datagrid("getPager" ).data("pagination" ).options;
-    var page = options.pageNumber;
-    var rows = options.pageSize;
+//支付账单
+function pay() {
+	var value = $("#dg").datagrid('getSelected');
+	var payWay=$("#payWay").val();
 	$.ajax({
 		type:"post",
-		url:"accountmag/searchYear",
+		url:"billmag/payBill",
 		async:true,
-		data:{"year":$("#year").val(),"page":page,"rows":rows},
+		data:{"year":$("#year").val(),
+				"month":$("#month").val(),
+				"payWay":payWay,
+				"id":value.monthCostAccount.accountId
+		},
 		dataType : "json",
 		success:function(mes){
-			$('#yearTable').datagrid('loadData',mes);
+			if(mes.flag==true){
+				$('#dg').datagrid('reload');
+				// 在上方中部显示消息窗口
+				$.messager.show({
+					title:'提示',
+					msg:mes.message,
+					showType:'show',
+					style:{
+						right:'',
+						top:document.body.scrollTop+document.documentElement.scrollTop,
+						bottom:''
+					}
+				});
+				$('#payBill').dialog('close');
+				doSearch();
+			}else{
+				// 在上方中部显示消息窗口
+				$.messager.show({
+					title:'提示',
+					msg:'系统繁忙，请稍后重试',
+					showType:'show',
+					style:{
+						right:'',
+						top:document.body.scrollTop+document.documentElement.scrollTop,
+						bottom:''
+					}
+				});
+			}
 		}
 	})
 }
 
+//查询功能
+function doSearch() {
+	var options = $("#dg").datagrid("getPager" ).data("pagination" ).options;
+    var page = options.pageNumber;
+    var rows = options.pageSize;
+    var id_num=$("#id_num").val();
+    var realName=$("#realName").val();
+    var accountName=$("#accountName").val();
+	$.ajax({
+		type:"post",
+		url:"billmag/searchDetail",
+		async:true,
+		data:{"year":$("#year").val(),
+				"month":$("#month").val(),
+				"page":page,"rows":rows,
+				"id_num":id_num,
+				"realName":realName,
+				"accountName":accountName
+		},
+		dataType : "json",
+		success:function(mes){
+			$('#dg').datagrid('loadData',mes);
+		}
+	})
+}
 
-
-//年份表格双击弹出每天实验室明细
-$('#yearTable').datagrid({
-    onDblClickRow: function (rowIndex, rowData) {
-    	var value=$("#yearTable").datagrid('getSelected');
-    	$("#monthDialog").dialog({closed:false});
-//    	$("#yearMonthTable").form("clear");
-    	$("#ipLabel").text("实验室ip地址:"+value.ip);
-    	var options = $("#yearMonthTable").datagrid("getPager" ).data("pagination" ).options;
-        var page = options.pageNumber;
-        var rows = options.pageSize;
-    	$.ajax({
-    		type:"post",
-    		url:"accountmag/searchYearMonth",
-    		async:true,
-    		data:{"ip":value.ip,"year":$("#year").val(),"page":page,"rows":rows},
-    		dataType : "json",
-    		success:function(mes){
-    			$('#yearMonthTable').datagrid('loadData',mes);
-    		}
-    	})
-    }
-});
-
-//月份表格双击弹出每天实验室明细
-$('#yearMonthTable').datagrid({
-    onDblClickRow: function (rowIndex, rowData) {
-    	var ip=$("#ipLabel").text();
-    	var value=$("#yearMonthTable").datagrid('getSelected');
-    	$("#monthDayDialog").dialog({closed:false});
-//    	$("#yearMonthDayTable").form("clear");
-    	$("#ipDayLabel").text(ip);
-    	var options = $("#yearMonthDayTable").datagrid("getPager" ).data("pagination" ).options;
-        var page = options.pageNumber;
-        var rows = options.pageSize;
-    	$.ajax({
-    		type:"post",
-    		url:"accountmag/searchYearMonthDay",
-    		async:true,
-    		data:{"ip":ip,"year":$("#year").val(),"month":value.month,"page":page,"rows":rows},
-    		dataType : "json",
-    		success:function(mes){
-    			$('#yearMonthDayTable').datagrid('loadData',mes);
-    		}
-    	})
-    }
-});
