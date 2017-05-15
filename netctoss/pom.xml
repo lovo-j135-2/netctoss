@@ -24,8 +24,7 @@
 			<artifactId>xerces</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-
-
+		
 		<!-- 对json和xml格式的支持类 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
