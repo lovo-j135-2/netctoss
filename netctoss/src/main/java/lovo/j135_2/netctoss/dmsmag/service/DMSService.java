@@ -9,4 +9,6 @@ import lovo.j135_2.netctoss.dmsmag.beans.DMS;
 public interface DMSService {
 	
 	public List<DMS> findAccountByDate() throws Exception;
+	
+	public int insertDMS(DMS dms) throws Exception;
 }

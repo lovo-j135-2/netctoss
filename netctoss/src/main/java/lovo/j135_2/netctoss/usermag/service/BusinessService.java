@@ -51,4 +51,7 @@ public interface BusinessService {
 	
 	
 	public Business findBusinessContainLabAndAccountAndPayByBusiId(Long id) throws Exception;
+	
+	
+	public Business findBusinessByIdAndPassword(Long id,String password) throws Exception;
 }

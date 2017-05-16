@@ -35,4 +35,10 @@ public class DMSServiceImpl implements DMSService {
 		return dMSDaoImpl.findAccountByDate(dates);
 	}
 
+	@Override
+	public int insertDMS(DMS dms) throws Exception {
+		// TODO Auto-generated method stub
+		return dMSDaoImpl.insertDMS(dms);
+	}
+
 }

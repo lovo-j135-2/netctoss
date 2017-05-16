@@ -16,6 +16,15 @@ public class DMS implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public DMS(Date beginTime, Date endTime, Long businessId, String ip, Long accountId) {
+		super();
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		this.businessId = businessId;
+		this.ip = ip;
+		this.accountId = accountId;
+	}
+
 	public Long getId() {
 		return id;
 	}
