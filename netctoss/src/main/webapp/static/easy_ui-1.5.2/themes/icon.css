@@ -94,3 +94,85 @@
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
 }
+
+
+.icon-blogger{
+	background:url('usericons/blogger.png') no-repeat center center;
+}
+.icon-home{
+	background:url('usericons/home.png') no-repeat center center;
+}
+.icon-users{
+	background:url('usericons/edit_group_users.png') no-repeat center center;
+}
+.icon-setting{
+	background:url('usericons/setting.png') no-repeat center center;
+}
+.icon-comments{
+	background:url('usericons/comments.png') no-repeat center center;
+}
+.icon-userInfo{
+	background:url('usericons/userInfo.png') no-repeat center center;
+}
+.icon-nav{
+	background:url('usericons/nav.png') no-repeat center center;
+}
+.icon-usermag{
+	background:url('usericons/usermag.png') no-repeat center center;
+}
+.icon-expenses{
+	background:url('usericons/expense.png') no-repeat center center;
+}
+.icon-permission{
+	background:url('usericons/permissionAndRole.png') no-repeat center center;
+}
+.icon-log{
+	background:url('usericons/logmag.png') no-repeat center center;
+}
+.icon-reportform{
+	background:url('usericons/reportmag.png') no-repeat center center;
+}
+.icon-account{
+	background:url('usericons/accountQuery.png') no-repeat center center;
+}
+.icon-billing{
+	background:url('usericons/billingmag.png') no-repeat center center;
+}
+.icon-pwd{
+	background:url('usericons/modifypassword.png') no-repeat center center;
+}
+.icon-out{
+	background:url('usericons/quit.png') no-repeat center center;
+}
+.icon-scan_userInfo{
+	background:url('usericons/scanuserinfo.png') no-repeat center center;
+}
+.icon-graphReport{
+	background:url('usericons/report.png') no-repeat center center;
+}
+.icon-businessraphReport{
+	background:url('usericons/graphReportForm.png') no-repeat center center;
+}
+.icon-loginLog{
+	background:url('usericons/loginLog.png') no-repeat center center;
+}
+.icon-operationLog{
+	background:url('usericons/operationLog.png') no-repeat center center;
+}
+.icon-role{
+	background:url('usericons/rolemag.png') no-repeat center center;
+}
+.icon-authority{
+	background:url('usericons/permissionmag.png') no-repeat center center;
+}
+.icon-accountInfo{
+	background:url('usericons/billingNum.png') no-repeat center center;
+}
+.icon-business{
+	background:url('usericons/businessDescription.png') no-repeat center center;
+}
+.icon-accountSearch{
+	background:url('usericons/raxico.png') no-repeat center center;
+}
+.icon-billingSearch{
+	background:url('usericons/billingQuery.png') no-repeat center center;

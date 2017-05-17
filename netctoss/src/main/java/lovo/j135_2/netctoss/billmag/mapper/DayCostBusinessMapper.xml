@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.billmag.mapper.DayCostBusinessMapper">
+
+	<resultMap type="MonthCostBussiness" id="monthCostBussinessMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="year" column="year" javaType="int"/>
+		<result property="month" column="month" javaType="int"/>
+		<result property="time" column="time" javaType="int"/>
+		<result property="cost" column="total_cost" javaType="java.math.BigDecimal"/>
+		<result property="ip" column="ip_num" javaType="java.lang.String"/>
+		<result property="payType" column="pay_type" javaType="java.lang.String"/>
+		<association  property="bussiness" javaType="Business" column="fk_business_id"
+			select="lovo.j135_2.netctoss.usermag.mapper.BusinessMapper.findBusinessContainLabAndAccountAndPayByBusiId">
+		</association>
+	</resultMap>
+	
+	<insert id="addDayCostBusiness" parameterType="int">
+		insert into t_daycost_business(fk_business_id,year,month,day,time,
+		unit_cost,pay_type,begin_time,end_time,ip_num,
+		fk_accountuser_id) values
+		<foreach collection="list" item="data" separator=",">
+			(#{data.bussiness.id},#{data.year},#{data.month},#{data.day},
+			#{data.time},#{data.unitCost},#{data.payType},#{data.beginTime},
+			#{data.endTime},#{data.ip},#{data.accountId})
+		</foreach>
+	</insert>
+	
+	<select id="findMonthTotalMesInDayCostBusinessByYearAndMonth" resultMap="monthCostBussinessMap">
+		select year,month, fk_business_id, SUM(time) as time,pay_type as payType,
+		ip_num as ip,fk_accountuser_id as accountId
+		from t_daycost_business where year=#{year} and month=#{month} and  day 
+		BETWEEN #{days[0]} and #{days[1]} GROUP BY fk_business_id;
+	</select>
+	
+	<select id="findMonthTotalCostMesInDayCostBusinessByYearAndMonth" resultMap="monthCostBussinessMap">
+		SELECT fk_business_id, sum(time)*unit_cost as cost from  t_daycost_business where 
+		year=#{year} and month=#{month} and  day 
+		BETWEEN #{days[0]} and #{days[1]} GROUP BY fk_business_id
+	</select>
+	
+</mapper>

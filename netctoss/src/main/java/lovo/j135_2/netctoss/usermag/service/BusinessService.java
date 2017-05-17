@@ -48,4 +48,10 @@ public interface BusinessService {
 	 * @throws Exception
 	 */
 	public List<Business> queryBusinessByPager(Pager pager)throws Exception;
+	
+	
+	public Business findBusinessContainLabAndAccountAndPayByBusiId(Long id) throws Exception;
+	
+	
+	public Business findBusinessByIdAndPassword(Long id,String password) throws Exception;
 }

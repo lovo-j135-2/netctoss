@@ -23,49 +23,29 @@ public class AccountLoginController {
 	@Resource
 	private IAccountUserLoginService accountUserServiceImpl;
 
-	// 注册用户
-	@RequestMapping(value = "/saveAccountUser", method = RequestMethod.POST, produces = {
-			"application/json;charset=utf-8" })
-	public Messager saveAccountUser(@RequestBody AcconutUser account) {
-
-		Messager msg = new Messager(true, "操作成功");
-		try {
-			accountUserServiceImpl.saveAccountUser(account);
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			msg.setStatus(false);
-			msg.setMsg("系统繁忙，请稍后再试");
-		}
-		return msg;
-
-	}
-
 	// 用户登录
 	@RequestMapping(value = "/accountUsers", method = RequestMethod.GET, produces = {
 			"application/json;charset=utf-8" })
-	public List<AcconutUser> queryAccountUserByaccountNameAndPassword(@RequestBody AcconutUser account) {
+	public AcconutUser queryAccountUserByaccountNameAndPassword(@RequestBody AcconutUser account) {
 		Messager msg = new Messager(true, "操作成功");
-		List<AcconutUser> list = null;
+		AcconutUser ac = null;
 		try {
-			list = accountUserServiceImpl.queryAcconutUserByAccountAndPwd(account);
+			ac = accountUserServiceImpl.queryAcconutUserByAccountNameAndPwd(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			msg.setStatus(false);
 			msg.setMsg("系统繁忙，请稍后再试");
 		}
-		return list;
+		return ac;
 	}
 
 	// 修改个人密码
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = { "application/json;charset=utf-8" })
-	public Messager updateAccountUser(@RequestBody AcconutUser ac, @PathVariable Long id) {
+	public Messager updateAccountUser(@RequestBody AcconutUser account) {
 		Messager msg = new Messager(true, "操作成功");
 		try {
-			ac.setId(id);
-			accountUserServiceImpl.updateAccountUser(ac);
+			accountUserServiceImpl.updatePasswordByAccountName(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -78,11 +58,11 @@ public class AccountLoginController {
 
 	// 查询个人用户信息
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = { "application/json;charset=utf-8" })
-	public AcconutUser getAccountUser(@PathVariable Long id) {
+	public AcconutUser getAccountUser(@RequestBody AcconutUser account) {
 		Messager msg = new Messager(true, "操作成功");
 		AcconutUser ac = null;
 		try {
-			ac = accountUserServiceImpl.getAccountUser(id);
+			ac = accountUserServiceImpl.getAccountUserByAccountName(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

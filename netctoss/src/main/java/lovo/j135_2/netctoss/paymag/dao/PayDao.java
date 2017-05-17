@@ -3,6 +3,8 @@ package lovo.j135_2.netctoss.paymag.dao;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import lovo.j135_2.netctoss.paymag.beans.PagePay;
 import lovo.j135_2.netctoss.paymag.beans.Pay;
 
@@ -53,4 +55,12 @@ public interface PayDao {
 	 * @throws Exception
 	 */
 	public int findPayCountByTime(List<Date> dates) throws Exception;
+	
+	/**
+	 * 查询资费是否被使用
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public Pay findPayWithBusinessById(Long id) throws Exception;
 }

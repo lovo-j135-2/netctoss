@@ -44,4 +44,16 @@ public class BusinessDaoImpl implements IBusinessDao{
 		return businessMapper.queryBusinessByPager(pager);
 	}
 
+	@Override
+	public Business findBusinessContainLabAndAccountAndPayByBusiId(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return businessMapper.findBusinessContainLabAndAccountAndPayByBusiId(id);
+	}
+
+	@Override
+	public Business findBusinessByIdAndPassword(Long id, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return businessMapper.findBusinessByIdAndPassword(id, password);
+	}
+
 }

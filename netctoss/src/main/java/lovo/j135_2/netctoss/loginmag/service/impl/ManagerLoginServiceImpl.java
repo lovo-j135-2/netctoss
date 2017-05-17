@@ -16,22 +16,34 @@ public class ManagerLoginServiceImpl implements IManagerLoginService {
 	@Resource
 	private IManagerLoginDao managerLoginDaoImpl;
 	
-	@Override
-	public List<Manager> queryManagerByaccountsAndPassword(Manager manager)throws Exception {
-		// TODO Auto-generated method stub
-		return managerLoginDaoImpl.queryManagerByaccountsAndPassword(manager);
-	}
-
+	
 	@Override
 	public Manager getManagerById(Long id)throws Exception {
 		// TODO Auto-generated method stub
 		return managerLoginDaoImpl.getManagerById(id);
 	}
 
+
 	@Override
-	public int updateManager(Manager manager)throws Exception {
+	public Manager queryManagerByaccountsAndPassword(Manager manager) throws Exception {
 		// TODO Auto-generated method stub
-		return managerLoginDaoImpl.updateManager(manager);
+		return managerLoginDaoImpl.queryManagerByaccountsAndPassword(manager);
 	}
+
+
+	@Override
+	public Manager getManagerByaccounts(Manager manager) throws Exception {
+		// TODO Auto-generated method stub
+		return managerLoginDaoImpl.getManagerByaccounts(manager);
+	}
+
+
+	@Override
+	public int updatePasswordByAccounts(Manager manager) throws Exception {
+		// TODO Auto-generated method stub
+		return managerLoginDaoImpl.updatePasswordByAccounts(manager);
+	}
+
+	
 
 }

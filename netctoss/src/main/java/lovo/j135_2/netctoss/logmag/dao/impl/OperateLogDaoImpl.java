@@ -1,5 +1,7 @@
 package lovo.j135_2.netctoss.logmag.dao.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,13 @@ public class OperateLogDaoImpl implements IOperateLogDao {
 	public void saveOperateLog(OperateLogBean operateLog) {
 		// TODO Auto-generated method stub
 		operateLogMapper.saveOperateLog(operateLog);
+	}
+
+	@Override
+	public List<OperateLogBean> findAllOperateLogBeansByAccountAndOperateTypeAndBeginTimeAndEndTime(String account,
+			String type, String beginTime, String endTime) {
+		// TODO Auto-generated method stub
+		return operateLogMapper.findAllOperateLogBeansByAccountAndOperateTypeAndBeginTimeAndEndTime(account, type, beginTime, endTime);
 	}
 
 }

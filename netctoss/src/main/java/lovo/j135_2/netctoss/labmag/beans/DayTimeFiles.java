@@ -18,7 +18,7 @@ public class DayTimeFiles implements Serializable {
 	
 	public DayTimeFiles(Long accountId, int year, int month, int day, int time, String ip) {
 		super();
-		accountId = accountId;
+		this.accountId = accountId;
 		this.year = year;
 		this.month = month;
 		this.day = day;

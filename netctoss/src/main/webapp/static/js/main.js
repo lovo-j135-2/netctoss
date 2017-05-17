@@ -131,7 +131,7 @@ var json1 = [{
 		"children":[{
 			"id":161,
 			"text":"账务管理",
-			"url":"<%=basePath%>/index.jsp"
+			"url":"http://localhost:8080/netctoss/jsp/accountmag/accountsystem.jsp"
 		}]
 	},{
 		"id":17,

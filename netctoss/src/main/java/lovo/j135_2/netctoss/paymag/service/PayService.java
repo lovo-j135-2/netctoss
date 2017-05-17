@@ -3,6 +3,8 @@ package lovo.j135_2.netctoss.paymag.service;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import lovo.j135_2.netctoss.paymag.beans.PagePay;
 import lovo.j135_2.netctoss.paymag.beans.Pay;
 
@@ -46,5 +48,8 @@ public interface PayService {
 	 * @throws Exception
 	 */
 	public PagePay findPaysByTime(List<Date> dates,PagePay pagePay) throws Exception;
+	
+	
+	public Pay findPayWithBusinessById(Long id) throws Exception;
 	
 }

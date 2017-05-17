@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
 import lovo.j135_2.netctoss.usermag.beans.Business;
 
 public class DayCostBussiness implements Serializable {
@@ -13,16 +14,42 @@ public class DayCostBussiness implements Serializable {
 	private int month;
 	private int time;
 	private int day;
-	private BigDecimal cost;
+	private BigDecimal unitCost;
 	private String payType;
 	private Date beginTime;
 	private Date endTime;
-	private MonthCostBussiness monthBussiness;
+	private Long accountId;
 	private Business bussiness;
+	private String ip;
+	
 	public DayCostBussiness() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public DayCostBussiness(int year, int month, int time, int day, BigDecimal unitCost, String payType, Date beginTime,
+			Date endTime, Long accountId, String ip) {
+		super();
+		this.year = year;
+		this.month = month;
+		this.time = time;
+		this.day = day;
+		this.unitCost = unitCost;
+		this.payType = payType;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		this.accountId = accountId;
+		this.ip = ip;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -53,12 +80,15 @@ public class DayCostBussiness implements Serializable {
 	public void setDay(int day) {
 		this.day = day;
 	}
-	public BigDecimal getCost() {
-		return cost;
+	
+	public BigDecimal getUnitCost() {
+		return unitCost;
 	}
-	public void setCost(BigDecimal cost) {
-		this.cost = cost;
+
+	public void setUnitCost(BigDecimal unitCost) {
+		this.unitCost = unitCost;
 	}
+
 	public String getPayType() {
 		return payType;
 	}
@@ -77,24 +107,30 @@ public class DayCostBussiness implements Serializable {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	public MonthCostBussiness getMonthBussiness() {
-		return monthBussiness;
-	}
-	public void setMonthBussiness(MonthCostBussiness monthBussiness) {
-		this.monthBussiness = monthBussiness;
-	}
 	
+	public Long getAccountId() {
+		return accountId;
+	}
+
+
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
+
+
 	public Business getBussiness() {
 		return bussiness;
 	}
 	public void setBussiness(Business bussiness) {
 		this.bussiness = bussiness;
 	}
+
 	@Override
 	public String toString() {
 		return "DayCostBussiness [id=" + id + ", year=" + year + ", month=" + month + ", time=" + time + ", day=" + day
-				+ ", cost=" + cost + ", payType=" + payType + ", beginTime=" + beginTime + ", endTime=" + endTime
-				+ ", monthBussiness=" + monthBussiness + "]";
+				+ ", unitCost=" + unitCost + ", payType=" + payType + ", beginTime=" + beginTime + ", endTime="
+				+ endTime + ", accountId=" + accountId + ", bussiness=" + bussiness + ", ip=" + ip + "]";
 	}
-	
 }

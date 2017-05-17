@@ -86,4 +86,20 @@ public interface PayMapper {
 	 */
 	
 	public int findPayCountByTime(@Param("dates")List<Date> dates) throws Exception;
+	
+	@Select(value="select * from t_pay where id=#{id}")
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property="payName",column="pay_name",javaType=String.class),
+		@Result(property="payType",column="pay_type",javaType=String.class),
+		@Result(property="payTime",column="pay_time",javaType=Integer.class),
+		@Result(property="basicCost",column="basic_cost",javaType=BigDecimal.class),
+		@Result(property="unitCost",column="unit_cost",javaType=BigDecimal.class),
+		@Result(property="costDiscrip",column="cost_discription",javaType=String.class),
+		@Result(property="payStatus",column="pay_status",javaType=Integer.class),
+		@Result(property="createTime",column="create_time",javaType=Date.class)
+	})
+	public Pay findPayById(Long id) throws Exception;
+	
+	public Pay findPayWithBusinessById(@Param("id")Long id) throws Exception;
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.billmag.mapper.MonthCostBusinessMapper">
+
+	<resultMap type="MonthCostBussiness" id="monthCostBussinessMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="year" column="year" javaType="int"/>
+		<result property="month" column="month" javaType="int"/>
+		<result property="time" column="time" javaType="int"/>
+		<result property="cost" column="total_cost" javaType="java.math.BigDecimal"/>
+		<result property="ip" column="ip_num" javaType="java.lang.String"/>
+		<result property="payType" column="pay_type" javaType="java.lang.String"/>
+		<association  property="bussiness" javaType="Business" column="fk_business_id"
+			select="lovo.j135_2.netctoss.usermag.mapper.BusinessMapper.findBusinessContainLabAndAccountAndPayByBusiId">
+		</association>
+	</resultMap>
+
+	<insert id="insertMonthCostBusinessBatch" parameterType="int">
+		insert into t_monthcost_business(fk_business_id,year,month,time,total_cost,
+		ip_num,pay_type,fk_accountuser_id) values
+		<foreach collection="list" item="data" separator=",">
+			(#{data.bussiness.id},#{data.year},#{data.month},#{data.time},#{data.cost},
+			#{data.ip},#{data.payType},#{data.accountId})
+		</foreach>
+	</insert>
+	
+	<select id="findMonthCostAccountMesByYearAndMonth" resultType="MonthCostAccount">
+		SELECT fk_accountuser_id as accountId ,year,month,sum(total_cost) as cost 
+		from t_monthcost_business where year=#{year} and month=#{month} 
+		 GROUP BY fk_accountuser_id
+	</select>
+	
+	<select id="findMonthCostBussinessByAccountIDAndYearAndMonth" resultMap="monthCostBussinessMap">
+		SELECT * from t_monthcost_business where year=#{year} and 
+		month=#{month} and fk_accountuser_id=#{id} limit #{page},#{rows}
+	</select>
+	
+	<select id="findMonthCostBussinessCountByAccountIDAndYearAndMonth" resultType="int">
+		SELECT count(*) from t_monthcost_business where year=#{year} and 
+		month=#{month} and fk_accountuser_id=#{id}
+	</select>
+	
+</mapper>

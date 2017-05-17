@@ -6,7 +6,7 @@
 	<insert id="insertDayTimeLabFiles">
 		insert into t_daytime_lab(account_id,year,month,day,time,ip_num) values
 		<foreach collection="list" item="data" separator=",">
-			(#{data.AccountId},#{data.year},#{data.month},
+			(#{data.accountId},#{data.year},#{data.month},
 			#{data.day},#{data.time},#{data.ip})
 		</foreach>
 	</insert>

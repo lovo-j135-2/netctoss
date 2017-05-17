@@ -44,4 +44,16 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDaoImpl.queryBusinessByPager(pager);
 	}
 
+	@Override
+	public Business findBusinessContainLabAndAccountAndPayByBusiId(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return businessDaoImpl.findBusinessContainLabAndAccountAndPayByBusiId(id);
+	}
+
+	@Override
+	public Business findBusinessByIdAndPassword(Long id, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return businessDaoImpl.findBusinessByIdAndPassword(id, password);
+	}
+
 }

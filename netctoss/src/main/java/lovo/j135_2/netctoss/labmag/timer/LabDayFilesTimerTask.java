@@ -1,6 +1,7 @@
 package lovo.j135_2.netctoss.labmag.timer;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,12 +18,17 @@ public class LabDayFilesTimerTask {
 	private LabDayFilesService labDayFilesServiceImpl;
 	
 	public void addDayLabFilesEndOfTheMonth(){
-		List<DayTimeFiles> list=new ArrayList<DayTimeFiles>();
-		try {
-			labDayFilesServiceImpl.insertDayTimeLabFiles(list);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 final Calendar c = Calendar.getInstance();
+		 	//判断容器调用本方法时，当前时间是否为每个月的最后一天
+		    if (c.get(Calendar.DATE) == c.getActualMaximum(Calendar.DATE)) {
+		        // do your stuff
+		    	List<DayTimeFiles> list=new ArrayList<DayTimeFiles>();
+				try {
+					labDayFilesServiceImpl.insertDayTimeLabFiles(list);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }
 	}
 }

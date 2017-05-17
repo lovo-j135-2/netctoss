@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.billmag.mapper.MonthCostAccountMapper">
+	
+	<resultMap type="AcconutUser" id="acconutUserMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="real_name" column="real_name" javaType="java.lang.String"/>
+		<result property="id_num" column="id_num" javaType="java.lang.String"/>
+		<result property="password" column="password" javaType="java.lang.String"/>
+		<result property="gender" column="gender" javaType="int"/>
+		<result property="account_name" column="account_name" javaType="java.lang.String"/>
+		<result property="phone" column="phone" javaType="java.lang.String"/>
+		<result property="address" column="address" javaType="java.lang.String"/>
+		<result property="postcode" column="postcode" javaType="java.lang.String"/>
+		<result property="qq" column="qq" javaType="java.lang.String"/>
+		<result property="gender" column="gender" javaType="int"/>
+		<association property="monthCostAccount" column="account_id" javaType="MonthCostAccount">
+			<id property="id" column="id" javaType="java.lang.Long"/>
+			<result property="accountId" column="account_id" javaType="java.lang.Long"/>
+			<result property="year" column="year" javaType="int"/>
+			<result property="month" column="month" javaType="int"/>
+			<result property="cost" column="cost" javaType="java.math.BigDecimal"/>
+			<result property="payStatus" column="pay_status" javaType="int"/>
+			<result property="payWay" column="pay_way" javaType="int"/>
+		</association>
+	</resultMap>
+
+	<insert id="insertMonthCostAccountBatch" parameterType="int">
+		insert into t_monthcost_account(account_id,year,month,cost,pay_status) values
+		<foreach collection="list" item="data" separator=",">
+			(#{data.accountId},#{data.year},#{data.month},#{data.cost},0)
+		</foreach>
+	</insert>
+	
+	<select id="findMonthCostAccountByIdOrAccountMesOrYearAndMonth" resultMap="acconutUserMap">
+		SELECT *FROM t_accountuser as a LEFT JOIN t_monthcost_account as ma on a.id=ma.account_id
+		<where>
+			<if test="#{user.real_name}!=null">
+				a.real_name like CONCAT(#{user.real_name},'%')  and
+			</if>
+			
+			<if test="#{user.id_num}!=null">
+				 a.id_num like CONCAT(#{user.id_num},'%') and 
+			</if>
+			
+			<if test="#{user.account_name}!=null">
+				 a.account_name like CONCAT(#{user.account_name},'%')  and
+			</if>
+		
+			<if test="#{time.year}!=null">
+				ma.year=#{time.year} and
+			</if>
+			
+			<if test="#{time.month}!=null">
+				ma.month=#{time.month}  
+			</if>
+		</where>
+		limit #{page},#{rows}
+	</select>
+	
+	<select id="findMonthCostAccountCountByIdOrAccountMesOrYearAndMonth" resultType="int">
+		SELECT count(*) FROM t_accountuser as a LEFT JOIN t_monthcost_account as ma on a.id=ma.account_id
+		<where>
+			<if test="#{user.real_name}!=null">
+				a.real_name like CONCAT(#{user.real_name},'%')  and
+			</if>
+			
+			<if test="#{user.id_num}!=null">
+				 a.id_num like CONCAT(#{user.id_num},'%') and 
+			</if>
+			
+			<if test="#{user.account_name}!=null">
+				 a.account_name like CONCAT(#{user.account_name},'%')  and
+			</if>
+		
+			<if test="#{time.year}!=null">
+				ma.year=#{time.year} and
+			</if>
+			
+			<if test="#{time.month}!=null">
+				ma.month=#{time.month}  
+			</if>
+		</where>
+	</select>
+	
+	<select id="findMonthCostAccountByAccountID" resultType="MonthCostAccount">
+		SELECT account_id as accountId,year,month,cost,pay_status as payStatus,pay_way as payWay 
+		from t_monthcost_account where account_id=#{account_id}
+	</select>
+</mapper>

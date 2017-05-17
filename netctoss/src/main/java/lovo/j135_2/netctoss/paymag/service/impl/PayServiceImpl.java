@@ -45,10 +45,16 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public PagePay findPaysByTime(List<Date> dates,PagePay pagePay) throws Exception {
 		// TODO Auto-generated method stub
+		pagePay.setFromLine((pagePay.getPage()-1)*pagePay.getLines());
 		pagePay.setTotal(payDaoImpl.findPayCountByTime(dates));
 		pagePay.setRows(payDaoImpl.findPaysByTime(dates, pagePay));
-		pagePay.setFromLine((pagePay.getPage()-1)*pagePay.getLines());
 		return pagePay;
+	}
+
+	@Override
+	public Pay findPayWithBusinessById(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return payDaoImpl.findPayWithBusinessById(id);
 	}
 
 }

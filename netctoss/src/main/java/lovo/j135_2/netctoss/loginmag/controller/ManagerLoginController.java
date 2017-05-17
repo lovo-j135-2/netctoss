@@ -24,11 +24,11 @@ public class ManagerLoginController {
 	
 	
 	@RequestMapping(value="/managers",method=RequestMethod.GET,produces={"application/json;charset=utf-8"})
-	public List<Manager> queryManagerByaccountsAndPassword(@RequestBody Manager manager) {
+	public Manager queryManagerByaccountsAndPassword(@RequestBody Manager manager) {
 		Messager msg = new Messager(true, "操作成功");
-		List<Manager> list = null;
+		Manager ma = null;
 		try {
-			list = managerLoginServiceImpl.queryManagerByaccountsAndPassword(manager);
+			ma = managerLoginServiceImpl.queryManagerByaccountsAndPassword(manager);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +36,7 @@ public class ManagerLoginController {
 			msg.setMsg("系统繁忙，请稍后再试");
 		}
 
-		return list;
+		return ma;
 	}
 
 	

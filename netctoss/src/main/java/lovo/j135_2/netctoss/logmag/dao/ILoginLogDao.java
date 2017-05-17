@@ -1,7 +1,11 @@
 package lovo.j135_2.netctoss.logmag.dao;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
+
+import lovo.j135_2.netctoss.logmag.beans.LoginLogBean;
+import lovo.j135_2.netctoss.logmag.beans.LoginLogPageBean;
+import lovo.j135_2.netctoss.logmag.beans.OperateLogBean;
 
 public interface ILoginLogDao {
 	/**
@@ -10,11 +14,15 @@ public interface ILoginLogDao {
 	 */
 	public void saveLoginLog(String name,Timestamp loginTime);
 	
-	public Long findLoginLogIdByLoginDate(Timestamp loginTime);	//查找刚刚save的这条登录日志记录
+	public List<LoginLogBean> findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String beginTime,String endTime) throws Exception;
+
+	public int findCountLoginLogBeanByTimeToPage(String beginTime,String endTime);
+
+	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String beginTime,String endTime);
 	
-	/**
-	 * 修改登录日志，即添加退出的时间（当前时间）
-	 * @param date
-	 */
-	public void updateLoginLog(Timestamp quitTime,Long id);
+	
+	
+	public LoginLogBean findLoginLogBeanById(Long id);
+	
+	public List<OperateLogBean> findOperateLogById(Long id);
 }

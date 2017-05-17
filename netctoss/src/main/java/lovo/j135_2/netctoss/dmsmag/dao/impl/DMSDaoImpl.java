@@ -23,4 +23,10 @@ public class DMSDaoImpl implements DMSDao {
 		return dmsMapper.findAccountByDate(dates);
 	}
 
+	@Override
+	public int insertDMS(DMS dms) throws Exception {
+		// TODO Auto-generated method stub
+		return dmsMapper.insertDMS(dms);
+	}
+
 }

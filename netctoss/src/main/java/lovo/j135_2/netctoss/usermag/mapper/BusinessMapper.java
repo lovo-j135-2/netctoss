@@ -87,4 +87,18 @@ public interface BusinessMapper {
 		@Result(property="lab",column="lab",javaType=Lab.class,one=@One(fetchType=FetchType.LAZY,select="queryLabById"))
 	})
 	public List<Business> queryBusinessByPager(@Param("pager")Pager pager)throws Exception;
+	
+	
+	public Business findBusinessContainLabAndAccountAndPayByBusiId(@Param("id")Long id) throws Exception;
+	
+	@Select(value="select id,business_name,fk_accountuser_id,fk_lab_id from t_business where id=#{id} and password=#{password}")
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property="business_name",column="business_name",javaType=String.class),
+		@Result(property="password",column="password",javaType=String.class),
+		@Result(property="fk_accountuser_id",column="fk_accountuser_id",javaType=AcconutUser.class,one=@One(fetchType=FetchType.LAZY,select="queryAcconutUserById")),
+		@Result(property="pay",column="pay",javaType=Pay.class,one=@One(fetchType=FetchType.LAZY,select="queryPayById")),
+		@Result(property="lab",column="fk_lab_id",javaType=Lab.class,one=@One(fetchType=FetchType.LAZY,select="queryLabById"))
+	})
+	public Business findBusinessByIdAndPassword(@Param("id")Long id,@Param("password")String password) throws Exception;
 }
