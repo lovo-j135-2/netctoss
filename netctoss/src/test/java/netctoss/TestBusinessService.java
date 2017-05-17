@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import lovo.j135_2.netctoss.billmag.service.DayCostBusinessService;
 import lovo.j135_2.netctoss.paymag.beans.Pay;
 import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
 import lovo.j135_2.netctoss.usermag.beans.Business;
@@ -27,10 +26,6 @@ public class TestBusinessService {
 	private BusinessService businessServiceImpl;
 	@Resource
 	private AcconutUserService acconutUserServiceImpl;
-	
-	@Resource
-	private  DayCostBusinessService dayCostBuisnessServiceImpl;
-	
 	@Ignore
 	public void testSaveBusiness(){
 		AcconutUser user=null;
@@ -86,7 +81,7 @@ public class TestBusinessService {
 		}
 		System.out.println(business);
 	}
-	@Ignore
+	@Test
 	public void testQueryBusinessByPager(){
 		Pager pager = new Pager();
 		pager.setFromLine(1);
@@ -100,26 +95,6 @@ public class TestBusinessService {
 		}
 		for (Business business : list) {
 			System.out.println(business);
-		}
-	}
-	
-	@Test
-	public void testFindBusinessContainLabAndAccountAndPayByBusiId(){
-		try {
-			Business b=businessServiceImpl.findBusinessContainLabAndAccountAndPayByBusiId(2l);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	@Ignore
-	public void testAddDayCostBusiness(){
-		try {
-			dayCostBuisnessServiceImpl.addDayCostBusiness();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 }

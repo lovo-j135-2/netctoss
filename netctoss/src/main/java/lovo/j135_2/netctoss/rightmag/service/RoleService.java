@@ -2,6 +2,8 @@ package lovo.j135_2.netctoss.rightmag.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 
 public interface RoleService {
@@ -11,7 +13,7 @@ public interface RoleService {
 	public void saveRole(Role role);
 	
 	/**
-	 * 删除角色
+	 *  删除角色，且删除角色之后删除中间表对应的数据（RoleMapper中，两个sql语句）
 	 */
 	public void deleteRole(long id);
 	
@@ -24,5 +26,22 @@ public interface RoleService {
 	/**
 	 * 查询角色
 	 */
-	public List<Role> getRole(String roleName,String roleType);
+	public List<Role> searchRole(String roleName,String roleType);
+	
+//	/**
+//	 *批量添加权限到角色 
+//	 */
+//	public void saveBatchRightToRole(Role role);
+	
+	/**
+	 * 显示角色
+	 */
+	public List<Role> getRole();
+	
+	/**
+	 * 查询角色权限（中间表）
+	 */
+	public List<Long> idList(long id);
+	
+	
 }
