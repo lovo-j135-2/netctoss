@@ -23,6 +23,7 @@ public class RoleServiceImpl implements RoleService {
 //		System.out.println(roleDaoImpl);
 		
 		roleDaoImpl.saveRole(role);
+		roleDaoImpl.saveBatchRightToRole(role);
 	}
 
 	@Override
@@ -35,12 +36,34 @@ public class RoleServiceImpl implements RoleService {
 	public void updateRole(Role role) {
 		// TODO Auto-generated method stub
 		roleDaoImpl.updateRole(role);
+		roleDaoImpl.deleteRightOfRole(role.getId());
+		roleDaoImpl.saveBatchRightToRole(role);
 	}
 
 	@Override
-	public List<Role> getRole(String roleName, String roleType) {
+	public List<Role> searchRole(String roleName, String roleType) {
 		// TODO Auto-generated method stub
-		return roleDaoImpl.getRole(roleName, roleType);
+		return roleDaoImpl.searchRole(roleName, roleType);
 	}
+
+//	@Override
+//	public void saveBatchRightToRole(Role role) {
+//		// TODO Auto-generated method stub
+//		roleDaoImpl.saveBatchRightToRole(role);
+//	}
+
+	@Override
+	public List<Role> getRole() {
+		// TODO Auto-generated method stub
+		return roleDaoImpl.getRole();
+	}
+
+	@Override
+	public List<Long> idList(long id) {
+		// TODO Auto-generated method stub
+		return roleDaoImpl.idList(id);
+	}
+
+	
 
 }

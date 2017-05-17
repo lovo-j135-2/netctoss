@@ -1,4 +1,4 @@
-package lovo.j135_2.netctoss.rightmag.beans;
+package netctoss;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +10,20 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import lovo.j135_2.netctoss.rightmag.beans.Right;
+import lovo.j135_2.netctoss.rightmag.beans.Role;
+import lovo.j135_2.netctoss.rightmag.dao.RoleDao;
 import lovo.j135_2.netctoss.rightmag.service.RoleService;
 import lovo.j135_2.netctoss.rightmag.service.impl.RoleServiceImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath*:spring-context.xml"})
 
-public class test {
+public class TestRole {
 	@Resource
 	private RoleService roleServiceImpl;
+	@Resource
+	private RoleDao roleDaoImpl;
 	
 	@Test
 	public void testSaveRole(){
@@ -39,15 +44,19 @@ public class test {
 	}
 	
 	@Test
-	public void testGetRole(){
-		List<Role>roleList=roleServiceImpl.getRole("g", "user");
+	public void testSearchRole(){
+		List<Role>roleList=roleServiceImpl.searchRole("%", "%");
 		for(Role role:roleList){
 			System.out.println("rolename=:"+role.getName());
 			System.out.println("roleType=:"+role.getRoleType());
 		}
 	}
-	
-	
+
+	@Test
+	public void testIdList(){
+		List<Long>idList=roleDaoImpl.idList(15);
+		System.out.println(idList);
+	}
 	
 	
 	

@@ -18,6 +18,21 @@ public class Right implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Right(String name, String discription) {
+		super();
+		this.name = name;
+		this.discription = discription;
+	}
+
+	
+	public Right(long id, String name, String discription) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.discription = discription;
+	}
+
 	public Right(long id, String name, String discription, String url, long parentId) {
 		super();
 		this.id = id;

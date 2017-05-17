@@ -18,10 +18,10 @@ public interface RightService {
 	/**
 	 * 修改权限
 	 */
-	public void updateRight(String rightName,String description);
+	public void updateRight(Right right);
 	
 	/**
 	 * 查询
 	 */
-	public List<Right> rightList();
+	public List<Right> getRights();
 }

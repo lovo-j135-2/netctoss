@@ -37,9 +37,33 @@ public class RoleDaoImpl implements RoleDao{
 	}
 
 	@Override
-	public List<Role> getRole(String roleName, String roleType) {
+	public List<Role> searchRole(String roleName, String roleType) {
 		// TODO Auto-generated method stub
-		return rolemapper.getRole(roleName, roleType);
+		return rolemapper.searchRole(roleName, roleType);
+	}
+
+	@Override
+	public void saveBatchRightToRole(Role role) {
+		// TODO Auto-generated method stub
+		rolemapper.saveBatchRightToRole(role);
+	}
+
+	@Override
+	public List<Role> getRole() {
+		// TODO Auto-generated method stub
+		return rolemapper.getRole();
+	}
+
+	@Override
+	public List<Long> idList(long id) {
+		// TODO Auto-generated method stub
+		return rolemapper.idList(id);
+	}
+
+	@Override
+	public void deleteRightOfRole(long id) {
+		// TODO Auto-generated method stub
+		rolemapper.deleteRightOfRole(id);
 	}
 
 }
