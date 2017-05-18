@@ -1,10 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="lovo.j135_2.netctoss.rightmag.mapper.RoleMapper">
-	
-	
+
+	<resultMap type="Role" id="roleMap">
+
+		<id property="id" column="id" javaType="long" />
+		<result property="name" column="name" javaType="java.lang.String" />
+		<result property="roleType" column="role_type" javaType="java.lang.String" />
+		<collection property="rights" javaType="java.util.List" column="id" fetchType="lazy"
+			select="getRightsByRoleId"></collection>
+
+	</resultMap>
+
+
+	<select id="getRoleById" resultMap="roleMap">
+
+		select * from t_role where id=#{id}
+
+	</select>
+	<select id="getRightsByRoleId" resultType="Right">
+
+		select r.id as id,r.name as name,r.discription as discription,r.url as url,r.p_id as parentId 
+		from t_right as r right join t_right_role as rr  on r.id = rr.fk_right_id where rr.fk_role_id=#{id}
+
+	</select>
+
 	<insert id="saveBatchRightToRole" >
 		insert into t_right_role(fk_role_id,fk_right_id) values
 		<foreach collection="role.rights" item="right" separator=",">
@@ -12,5 +33,5 @@
 		</foreach>
 	</insert>
 
-	
+
 </mapper>

@@ -26,7 +26,7 @@ public interface BusinessService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int deleteBusiness(int id) throws Exception;
+	public int deleteBusiness(Long id) throws Exception;
 	/**
 	 * 修改业务状
 	 * @param business
@@ -35,12 +35,12 @@ public interface BusinessService {
 	 */
 	public int updateBusiness(Business business) throws Exception;
 	/**
-	 * 按id查询业务
-	 * @param id
+	 * 按业务账号查询业务
+	 * @param name 业务账号
 	 * @return
 	 * @throws Exception
 	 */
-	public Business queryBusinessById(int id) throws Exception;
+	public Business queryBusinessByName(String name) throws Exception;
 	/**
 	 * 分页查询
 	 * @param pager
@@ -51,7 +51,12 @@ public interface BusinessService {
 	
 	
 	public Business findBusinessContainLabAndAccountAndPayByBusiId(Long id) throws Exception;
+	/**
+	 * 查询总业务记录数
+	 * @return
+	 * @throws Exception
+	 */
+	public int countTotalBusiness()throws Exception;
 	
-	
-	public Business findBusinessByIdAndPassword(Long id,String password) throws Exception;
+	public Business findBusinessByIdAndPassword(Long id, String password) throws Exception;
 }

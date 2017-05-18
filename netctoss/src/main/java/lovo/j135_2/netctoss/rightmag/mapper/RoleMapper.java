@@ -51,4 +51,5 @@ public interface RoleMapper {
 	@ResultType(List.class)
 	public List<Long> idList (long id);
 	
+	public Role getRoleById(Long id);
 }

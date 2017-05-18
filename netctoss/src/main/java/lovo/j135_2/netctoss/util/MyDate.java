@@ -59,8 +59,8 @@ public class MyDate {
 		}
 		return date;
 	}
-	
 	public static void main(String[] args) {
 		Date date=new Date();
+		System.out.println(MyDate.dateToString(date));
 	}
 }

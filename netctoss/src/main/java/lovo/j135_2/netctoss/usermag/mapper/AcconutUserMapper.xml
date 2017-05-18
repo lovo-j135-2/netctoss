@@ -19,4 +19,18 @@
 		insert into t_accountuser(real_name,id_num,password,gender,account_name,phone,address,postcode,qq,status)
 		values(#{real_name},#{id_num},#{password},#{gender},#{account_name},#{phone},#{address},#{postcode},#{qq},#{status})
 	</insert>
+	<update id="updatePwdAndPhone" parameterType="AcconutUser">
+		update t_accountuser
+		<set>
+			<if test="user.password!=null">
+				password=#{user.password},
+			</if>
+			<if test="user.phone!=null">
+				phone=#{user.phone},
+			</if>
+		</set>
+		<where>
+			id=#{user.id}
+		</where>
+	</update>
 </mapper>

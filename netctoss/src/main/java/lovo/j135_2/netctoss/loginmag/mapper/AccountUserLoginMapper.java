@@ -21,7 +21,7 @@ public interface AccountUserLoginMapper {
 	@ResultType(AcconutUser.class)
 	public AcconutUser getAccountUserByAccountName(@Param("account")AcconutUser account) throws Exception;
 	
-	@Update("update t_accountuser set password=#{account.password} where account_name=#{account.account_name}")
+	@Update("update t_accountuser set password=#{account.password} where id=#{account.id}")
 	public int updatePasswordByAccountName(@Param("account")AcconutUser account)throws Exception;
 	/**
 	 * 退出系统

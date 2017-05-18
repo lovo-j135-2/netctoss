@@ -6,13 +6,14 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.transaction.annotation.Transactional;
 
 import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
-import lovo.j135_2.netctoss.usermag.beans.Pager;
+import lovo.j135_2.netctoss.usermag.beans.PagerAccount;
 
 
 public interface AcconutUserMapper {
@@ -30,7 +31,14 @@ public interface AcconutUserMapper {
 	 */
 	@Delete(value="delete from t_accountuser where id=#{id}")
 	@Transactional(readOnly=false)
-	public int deleteAcconutUser(@Param("id")int id) throws Exception;
+	public int deleteAcconutUser(@Param("id")Long id) throws Exception;
+	/**
+	 * 修改账务密码和电话
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int updatePwdAndPhone(@Param("user")AcconutUser user)throws Exception;
 	/**
 	 * 修改账务账号状态
 	 * @param user
@@ -57,7 +65,28 @@ public interface AcconutUserMapper {
 		@Result(property="qq",column="qq",javaType=String.class),
 		@Result(property="status",column="status",javaType=Integer.class)
 	})
-	public AcconutUser queryAcconutUserById(int id) throws Exception; 
+	public AcconutUser queryAcconutUserById(Long id) throws Exception;
+	/**
+	 * 按 账务名字查询账务
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	@Select(value="select * from t_accountuser where account_name like CONCAT(#{name},'%')")
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property="real_name",column="real_name",javaType=String.class),
+		@Result(property="id_num",column="id_num",javaType=String.class),
+		@Result(property="password",column="password",javaType=String.class),
+		@Result(property="gender",column="gender",javaType=Integer.class),
+		@Result(property="account_name",column="account_name",javaType=String.class),
+		@Result(property="phone",column="phone",javaType=String.class),
+		@Result(property="address",column="address",javaType=String.class),
+		@Result(property="postcode",column="postcode",javaType=String.class),
+		@Result(property="qq",column="qq",javaType=String.class),
+		@Result(property="status",column="status",javaType=Integer.class)
+	})
+	public List<AcconutUser> queryAcconutUserByName(@Param("name")String name)throws Exception;
 	/**
 	 * 分页查询账务
 	 * @param pager
@@ -78,5 +107,24 @@ public interface AcconutUserMapper {
 		@Result(property="qq",column="qq",javaType=String.class),
 		@Result(property="status",column="status",javaType=Integer.class)
 	})
-	public List<AcconutUser> queryAcconutUserByPager(@Param("pager")Pager pager)throws Exception;
+	public List<AcconutUser> queryAcconutUserByPager(@Param("pager")PagerAccount pager)throws Exception;
+	@Select(value="select count(*) from t_accountuser")
+	@ResultType(Integer.class)
+	public int countTotalAcconutUser()throws Exception;
+	
+	@Select(value="select * from t_accountuser")
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property="real_name",column="real_name",javaType=String.class),
+		@Result(property="id_num",column="id_num",javaType=String.class),
+		@Result(property="password",column="password",javaType=String.class),
+		@Result(property="gender",column="gender",javaType=Integer.class),
+		@Result(property="account_name",column="account_name",javaType=String.class),
+		@Result(property="phone",column="phone",javaType=String.class),
+		@Result(property="address",column="address",javaType=String.class),
+		@Result(property="postcode",column="postcode",javaType=String.class),
+		@Result(property="qq",column="qq",javaType=String.class),
+		@Result(property="status",column="status",javaType=Integer.class)
+	})
+	public List<AcconutUser> findAllUserAccount() throws Exception;
 }

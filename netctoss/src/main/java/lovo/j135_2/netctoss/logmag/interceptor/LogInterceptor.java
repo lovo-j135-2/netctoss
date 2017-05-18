@@ -2,6 +2,8 @@ package lovo.j135_2.netctoss.logmag.interceptor;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import lovo.j135_2.netctoss.logmag.beans.LoginLogBean;
 import lovo.j135_2.netctoss.logmag.service.ILoginLogService;
+import lovo.j135_2.netctoss.managermag.beans.Manager;
 
 
 public class LogInterceptor implements HandlerInterceptor{
@@ -28,6 +32,12 @@ public class LogInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object obj) throws Exception {
 		
 		System.out.println("Interceptor----preHandle");
+		
+//		Enumeration<String> keys = req.getParameterNames(); 
+//		while(keys.hasMoreElements()) { 
+//		    String k = keys.nextElement(); 
+//		    System.out.println(k + " 111= " + req.getParameter(k) ); 
+//		} 
 		
 //		HandlerMethod h = (HandlerMethod) obj;
 //		System.out.println(h.getBean().getClass().getName());	//获取类名 LoginController
@@ -48,18 +58,42 @@ public class LogInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest req, HttpServletResponse res, Object obj, ModelAndView mav)
 			throws Exception {
+		
 		System.out.println("Interceptor----postHandle");
 		
-		HandlerMethod h = (HandlerMethod) obj;
-		System.out.println(h.getBean().getClass().getName());
-
-		String[] str = (String[]) req.getParameterMap().get("userName");
-		System.out.println(str[0]);		//参数是一个map集合，key对应的是一个String[]
+//		HandlerMethod h = (HandlerMethod) obj;
+//		System.out.println(h.getBean().getClass().getName());
 		
+		Manager man = (Manager) req.getSession().getAttribute("manager");	//用session来取，拦截器的意义何在？
+																			//但是不用session，直接获取参数，那错误登录的用户有有何意义？
+																			//如果写一个普通方法也能获取session，但是登录方法必须调用
+																			//拦截器不需要调用，如此看来还是有点意义嘛小伙子！
+		String name = man.getName();
 		Date date = new Date();
 		Timestamp time = new Timestamp(date.getTime());
 		
-		loginLogServiceImpl.saveLoginLog(str[0], time);	
+		LoginLogBean bean = new LoginLogBean();
+		bean.setAccount(name);
+		bean.setLoginTime(time);
+		loginLogServiceImpl.saveLoginLog(bean);	
+		Long id = bean.getId();		//返回刚刚存入这条登录日志的ID
+		
+		req.getSession().setAttribute("id", id);	//将这条记录的ID存入session中，操作日志中要用到
+		
+//		Map<String, String[]> map = req.getParameterMap();
+//		System.out.println(map);		//参数是一个map集合，key对应的是一个String[]
+//		
+//		Enumeration<String> keys = req.getParameterNames(); 
+//		while(keys.hasMoreElements()) { 
+//		    String k = keys.nextElement(); 
+//		    System.out.println(k + " = " + req.getParameter(k) ); 
+//		} 
+		
+		
+		
+		
+//		System.out.println(bean.getId());
+		
 		
 //		id = loginLogServiceImpl.findLoginLogIdByLoginDate(time);
 //		System.out.println(id);

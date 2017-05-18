@@ -18,6 +18,12 @@ public class RoleDaoImpl implements RoleDao{
 	private RoleMapper rolemapper;
 	
 	
+	
+	@Override
+	public Role getRoleById(Long id) {
+		// TODO Auto-generated method stub
+		return rolemapper.getRoleById(id);
+	}
 	@Override
 	public void saveRole(Role role) {
 		// TODO Auto-generated method stub

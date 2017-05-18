@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.accoutmag.mapper.DayCostMapper">
+
+	<resultMap type="DayCost" id="dayMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="sqlBeginTime" column="begin_time" javaType="java.sql.Date"/>
+		<result property="sqlEndTime" column="end_time" javaType="java.sql.Date"/>
+		<result property="year" column="year" javaType="int"/>
+		<result property="month" column="month" javaType="int"/>
+		<result property="time" column="time" javaType="int"/>
+		<result property="cost" column="cost" javaType="java.math.BigDecimal"/>
+		<result property="payType" column="pay_type" javaType="java.lang.String"/>
+	</resultMap>
+	
+	<select id="findAllDayCostByBusinessIdAndAccountId" resultMap="dayMap">
+		select * from t_daycost_business   
+		<where>
+			fk_business_id = #{bId} and month = #{month}
+		</where>
+	</select>
+	
+</mapper>

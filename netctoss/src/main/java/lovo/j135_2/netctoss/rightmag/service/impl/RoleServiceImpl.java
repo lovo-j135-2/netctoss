@@ -64,6 +64,10 @@ public class RoleServiceImpl implements RoleService {
 		return roleDaoImpl.idList(id);
 	}
 
-	
+	@Override
+	public Role getRoleById(Long id) {
+		// TODO Auto-generated method stub
+		return roleDaoImpl.getRoleById(id);
+	}
 
 }

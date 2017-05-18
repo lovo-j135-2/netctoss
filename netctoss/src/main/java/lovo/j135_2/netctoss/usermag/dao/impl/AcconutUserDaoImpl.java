@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
 import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
-import lovo.j135_2.netctoss.usermag.beans.Pager;
+import lovo.j135_2.netctoss.usermag.beans.PagerAccount;
 import lovo.j135_2.netctoss.usermag.dao.IAcconutUserDao;
 import lovo.j135_2.netctoss.usermag.mapper.AcconutUserMapper;
 @Repository
@@ -21,7 +21,7 @@ public class AcconutUserDaoImpl implements IAcconutUserDao {
 	}
 
 	@Override
-	public int delAcconutUser(int id) throws Exception {
+	public int delAcconutUser(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return acconutUserMapper.deleteAcconutUser(id);
 	}
@@ -33,15 +33,37 @@ public class AcconutUserDaoImpl implements IAcconutUserDao {
 	}
 
 	@Override
-	public AcconutUser queryAcconutUserById(int id) throws Exception {
+	public AcconutUser queryAcconutUserById(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return acconutUserMapper.queryAcconutUserById(id);
 	}
 
 	@Override
-	public List<AcconutUser> queryAcconutUserByPager(Pager pager) throws Exception {
+	public List<AcconutUser> queryAcconutUserByPager(PagerAccount pager) throws Exception {
 		// TODO Auto-generated method stub
 		return acconutUserMapper.queryAcconutUserByPager(pager);
 	}
+	@Override
+	public int updatePwdAndPhone(AcconutUser user) throws Exception {
+		// TODO Auto-generated method stub
+		return acconutUserMapper.updatePwdAndPhone(user);
+	}
 
+	@Override
+	public List<AcconutUser> queryAcconutUserByName(String name) throws Exception {
+		// TODO Auto-generated method stub
+		return acconutUserMapper.queryAcconutUserByName(name);
+	}
+
+	@Override
+	public int countTotalAcconutUser() throws Exception {
+		// TODO Auto-generated method stub
+		return acconutUserMapper.countTotalAcconutUser();
+	}
+
+	@Override
+	public List<AcconutUser> findAllUserAccount() throws Exception {
+		// TODO Auto-generated method stub
+		return acconutUserMapper.findAllUserAccount();
+	}
 }

@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import lovo.j135_2.netctoss.usermag.beans.AcconutUser;
-import lovo.j135_2.netctoss.usermag.beans.Pager;
+import lovo.j135_2.netctoss.usermag.beans.PagerAccount;
+
 
 /**
  * 账务持久层接口
@@ -25,7 +26,14 @@ public interface IAcconutUserDao {
 	 * @param id
 	 * @return
 	 */
-	public int delAcconutUser(int id) throws Exception;
+	public int delAcconutUser(Long id) throws Exception;
+	/**
+	 * 修改账务密码和电话
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	public int updatePwdAndPhone(AcconutUser user)throws Exception;
 	/**
 	 * 修改账务账号状态
 	 * @param user
@@ -37,12 +45,27 @@ public interface IAcconutUserDao {
 	 * @param id 账务id
 	 * @return 账务对象
 	 */
-	public AcconutUser queryAcconutUserById(int id) throws Exception; 
+	public AcconutUser queryAcconutUserById(Long id) throws Exception; 
+	/**
+	 * 按账务名查询账务
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
+	public List<AcconutUser> queryAcconutUserByName(String name)throws Exception;
 	/**
 	 * 分页查询账务
 	 * @param pager
 	 * @return
 	 * @throws Exception
 	 */
-	public List<AcconutUser> queryAcconutUserByPager(Pager pager)throws Exception;
+	public List<AcconutUser> queryAcconutUserByPager(PagerAccount pager)throws Exception;
+	/**
+	 * 查询总记录
+	 * @return
+	 * @throws Exception
+	 */
+	public int countTotalAcconutUser()throws Exception;
+	
+	public List<AcconutUser> findAllUserAccount() throws Exception;
 }

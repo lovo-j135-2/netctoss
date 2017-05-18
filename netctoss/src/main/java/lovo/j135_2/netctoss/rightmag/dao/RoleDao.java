@@ -2,8 +2,6 @@ package lovo.j135_2.netctoss.rightmag.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 
 public interface RoleDao {
@@ -13,7 +11,7 @@ public interface RoleDao {
 	public void saveRole(Role role);
 	
 	/**
-	 * 删除角色，且删除角色之后删除中间表对应的数据（RoleMapper中，两个sql语句）
+	 * 删除角色
 	 */
 	public void deleteRole(long id);
 	
@@ -27,6 +25,8 @@ public interface RoleDao {
 	 * 查询角色
 	 */
 	public List<Role> searchRole(String roleName,String roleType);
+	
+	public Role getRoleById(Long id);
 	
 	/**
 	 *批量添加权限到角色 

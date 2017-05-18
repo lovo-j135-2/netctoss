@@ -71,5 +71,10 @@ public class Business implements Serializable{
 		return "Business [id=" + id + ", business_name=" + business_name + ", password=" + password
 				+ ", fk_accountuser_id=" + fk_accountuser_id + ", pay=" + pay + ", lab=" + lab + "]";
 	}
+//	@Override
+//	public String toString() {
+//		return "Business [id=" + id + ", business_name=" + business_name + ", password=" + password + "]";
+//	}
+	
 	
 }

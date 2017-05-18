@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lovo.j135_2.netctoss.accoutmag.mapper.BusinessCostMapper">
+
+	<resultMap type="MonthBusiness" id="businessMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="bussinessId" column="fk_business_id" javaType="java.lang.Long"/>
+		<result property="year" column="year" javaType="int"/>
+		<result property="month" column="month" javaType="int"/>
+		<result property="time" column="time" javaType="int"/>
+		<result property="cost" column="total_cost" javaType="java.math.BigDecimal"/>
+		<result property="payType" column="pay_type" javaType="java.lang.String"/>
+		<result property="monthCostAccoutId" column="fk_accountuser_id" javaType="java.lang.Long"/>
+		<result property="ip" column="ip_num" javaType="java.lang.String"/>
+	</resultMap>
+	
+	<select id="findAllBusinessCostByAccountId" resultMap="businessMap">
+		select * from t_monthcost_business   
+		<where>
+			fk_accountuser_id = #{id} and month = #{month}
+		</where>
+	</select>
+	<select id="findAllBusinessByAccountId" resultMap="businessMap">
+		select * from t_monthcost_business   
+		<where>
+			fk_accountuser_id = #{id}
+		</where>
+	</select>
+	<select id="findAllBusinessByAccountIdAndYear" resultMap="businessMap">
+		select * from t_monthcost_business   
+		<where>
+			fk_accountuser_id = #{id} and year = #{year}
+		</where>
+	</select>
+	
+	
+</mapper>

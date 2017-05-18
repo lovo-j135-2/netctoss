@@ -21,7 +21,7 @@ public class BusinessDaoImpl implements IBusinessDao{
 	}
 
 	@Override
-	public int deleteBusiness(int id) throws Exception {
+	public int deleteBusiness(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return businessMapper.deleteBusiness(id);
 	}
@@ -33,9 +33,9 @@ public class BusinessDaoImpl implements IBusinessDao{
 	}
 
 	@Override
-	public Business queryBusinessById(int id) throws Exception {
+	public Business queryBusinessByName(String name) throws Exception {
 		// TODO Auto-generated method stub
-		return businessMapper.queryBusinessById(id);
+		return businessMapper.queryBusinessByName(name);
 	}
 
 	@Override
@@ -51,9 +51,14 @@ public class BusinessDaoImpl implements IBusinessDao{
 	}
 
 	@Override
+	public int countTotalBusiness() throws Exception {
+		// TODO Auto-generated method stub
+		return businessMapper.countTotalBusiness();
+	}
+
+	@Override
 	public Business findBusinessByIdAndPassword(Long id, String password) throws Exception {
 		// TODO Auto-generated method stub
 		return businessMapper.findBusinessByIdAndPassword(id, password);
 	}
-
 }

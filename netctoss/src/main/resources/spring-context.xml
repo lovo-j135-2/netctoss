@@ -128,14 +128,12 @@
 	
 	
 	<!-- 给定时任务类命名 -->
-     <bean id="accoutTimerTask" class="lovo.j135_2.netctoss.accoutmag.timer.AccoutTimerTask" />
      <bean id="labDayFilesTimerTask" class="lovo.j135_2.netctoss.labmag.timer.LabDayFilesTimerTask" />
      <bean id="billTimerTask" class="lovo.j135_2.netctoss.billmag.timer.BillTimerTask" />
      
      <!-- 配置定时任务执行 -->
      <task:scheduled-tasks>   
      	<!-- 表示程序启动5s后调用accoutTimerTask类中的job1方法，然后每隔10秒再调用job1一次 -->
-        <task:scheduled ref="accoutTimerTask" method="job1" initial-delay="5000" fixed-delay="10000"/>
         <!-- <task:scheduled ref="labDayFilesTimerTask" method="addDayLabFilesEndOfTheMonth" initial-delay="5000" fixed-delay="1000000"/> -->
         <!-- 任务表示每天的23点59分59秒调用taskJob类中的job2方法 -->
         <!-- ref是工作类
@@ -155,7 +153,6 @@
 			天（星期）（1~7 1=SUN 或 SUN，MON，TUE，WED，THU，FRI，SAT）
 			年份（1970－2099） 
 		-->
-        <task:scheduled ref="accoutTimerTask" method="job2" cron="59 59 23 28-31 * ?"/>
         <!-- 每个月的28号~31号运行方法，至于判断是否为最后一天，在addDayLabFilesEndOfTheMonth方法中使用如下方法进行判断
         	final Calendar c = Calendar.getInstance();
 		    if (c.get(Calendar.DATE) == c.getActualMaximum(Calendar.DATE)) {

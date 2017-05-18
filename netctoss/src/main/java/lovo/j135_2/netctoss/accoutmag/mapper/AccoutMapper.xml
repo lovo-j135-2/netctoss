@@ -3,6 +3,42 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="lovo.j135_2.netctoss.accoutmag.mapper.AccoutMapper">
 
+	<resultMap type="MonthAccount" id="accountMap">
+		<id property="id" column="id" javaType="java.lang.Long"/>
+		<result property="accountId" column="account_id" javaType="java.lang.Long"/>
+		<result property="year" column="year" javaType="int"/>
+		<result property="month" column="month" javaType="int"/>
+		<result property="time" column="time" javaType="int"/>
+		<result property="cost" column="cost" javaType="java.math.BigDecimal"/>
+		<result property="payStatus" column="payStatus" javaType="int"/>
+	</resultMap>
+	
+	<select id="findMonthCostAccountById" resultMap="accountMap">
+		select * from t_monthcost_account   
+		<where>
+			account_id = #{id}  
+		</where>
+	</select>
+	<select id="findMonthCostAccountByIdToPage" resultMap="accountMap">
+		select * from t_monthcost_account   
+		<where>
+			account_id = #{id}  
+		</where>
+		limit #{pageAccount.index},#{pageAccount.lines}
+	</select>
+	
+	<select id="findMonthCostAccountBydate" resultMap="accountMap">
+		select * from t_monthcost_account   
+		<where>
+			year = #{year}  and month = #{month} and account_id = #{id}
+		</where>
+	</select>
+	<select id="findAccountByYear" resultMap="accountMap">
+		select * from t_monthcost_account   
+		<where>
+			year = #{year}  and account_id = #{id}
+		</where>
+	</select>
 	
 	
 </mapper>

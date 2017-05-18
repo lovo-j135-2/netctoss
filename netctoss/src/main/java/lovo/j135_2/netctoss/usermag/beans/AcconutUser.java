@@ -21,6 +21,7 @@ public class AcconutUser implements Serializable {
 	private String address;
 	private String postcode;
 	private String qq;
+	//账号可用状态，0为不可用，1为可用
 	private int status;
 	private MonthCostAccount monthCostAccount;
 	public AcconutUser() {

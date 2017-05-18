@@ -20,27 +20,25 @@ public class LoginLogServiceImpl implements ILoginLogService {
 	private ILoginLogDao loginLogDaoImpl;
 	
 	@Override
-	public void saveLoginLog(String name, Timestamp loginTime) {
+	public int saveLoginLog(LoginLogBean bean) {
 		// TODO Auto-generated method stub
-		loginLogDaoImpl.saveLoginLog(name, loginTime);		//NullPointerException!!!!!!
+		return loginLogDaoImpl.saveLoginLog(bean);		//NullPointerException!!!!!!
 	}
 
 	@Override
-	public List<LoginLogBean> findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String beginTime, String endTime) throws Exception {
-		// TODO Auto-generated method stub
-		return loginLogDaoImpl.findLoginLogBeanByTimeToPage(pageBean,beginTime, endTime);
+	public LoginLogPageBean findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String account,String beginTime, String endTime) throws Exception {
+				
+		
+		pageBean.setTotal(loginLogDaoImpl.findCountLoginLogBeanByTimeToPage(account,beginTime,endTime));
+		pageBean.setRows(loginLogDaoImpl.findLoginLogBeanByTimeToPage(pageBean,account,beginTime,endTime));
+		return pageBean;
+		
 	}
 
 	@Override
-	public int findCountLoginLogBeanByTimeToPage(String beginTime, String endTime) {
+	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String account,String beginTime, String endTime) {
 		// TODO Auto-generated method stub
-		return loginLogDaoImpl.findCountLoginLogBeanByTimeToPage(beginTime, endTime);
-	}
-
-	@Override
-	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String beginTime, String endTime) {
-		// TODO Auto-generated method stub
-		return loginLogDaoImpl.findAllLoginLogBeanByTimeToPage(beginTime, endTime);
+		return loginLogDaoImpl.findAllLoginLogBeanByTimeToPage(account,beginTime, endTime);
 	}
 
 	@Override

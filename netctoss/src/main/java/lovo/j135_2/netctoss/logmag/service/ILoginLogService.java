@@ -14,7 +14,7 @@ public interface ILoginLogService {
 	 * 保存登录日志（保存登录管理员名字，登录时间为当前时间）
 	 * @param name
 	 */
-	public void saveLoginLog(String name,Timestamp loginTime);
+	public int saveLoginLog(LoginLogBean bean);
 	
 	/**
 	 * 传统：分页查询登录日志
@@ -22,9 +22,9 @@ public interface ILoginLogService {
 	 * @param endTime	结束登录时间
 	 * @return
 	 */
-	public List<LoginLogBean> findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String beginTime,String endTime) throws Exception;
+	public LoginLogPageBean findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String account,String beginTime,String endTime) throws Exception;
 	
-	public int findCountLoginLogBeanByTimeToPage(String beginTime,String endTime);
+//	public int findCountLoginLogBeanByTimeToPage(String beginTime,String endTime) throws Exception;
 	
 	/**
 	 * 据说：可以利用easyUI的假分页
@@ -32,7 +32,8 @@ public interface ILoginLogService {
 	 * @param endTime	结束登录时间
 	 * @return
 	 */
-	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String beginTime,String endTime);
+	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String account,String beginTime,String endTime);
+	
 	
 	/**
 	 * 根据id查询对应的LoginLogBean，顺带查出对应的OperateLogBean

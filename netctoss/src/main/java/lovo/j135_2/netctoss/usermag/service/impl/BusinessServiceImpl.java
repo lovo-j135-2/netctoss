@@ -21,7 +21,7 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public int deleteBusiness(int id) throws Exception {
+	public int deleteBusiness(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return businessDaoImpl.deleteBusiness(id);
 	}
@@ -33,9 +33,9 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public Business queryBusinessById(int id) throws Exception {
+	public Business queryBusinessByName(String name) throws Exception {
 		// TODO Auto-generated method stub
-		return businessDaoImpl.queryBusinessById(id);
+		return businessDaoImpl.queryBusinessByName(name);
 	}
 
 	@Override
@@ -51,9 +51,14 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
+	public int countTotalBusiness() throws Exception {
+		// TODO Auto-generated method stub
+		return businessDaoImpl.countTotalBusiness();
+	}
+
+	@Override
 	public Business findBusinessByIdAndPassword(Long id, String password) throws Exception {
 		// TODO Auto-generated method stub
 		return businessDaoImpl.findBusinessByIdAndPassword(id, password);
 	}
-
 }

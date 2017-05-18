@@ -11,30 +11,30 @@ public class LoginLogPageBean implements Serializable{
 	private static final long serialVersionUID = -8622629696581120443L;
 	
 	private int page;	//当前第几页
-	private int rows;	//每页显示条数
+	private int lines;	//每页显示条数
 	private int index;	//当页起始位置
-	private int totalRows;	//总条数
+	private int total;	//总条数
 	private int totalPages; //总页数
-	private List<LoginLogBean> datas;	//当页数据列表
+	private List<LoginLogBean> rows;	//当页数据列表
 	
 	
 	public LoginLogPageBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public LoginLogPageBean(int page, int rows, int index, int totalRows, int totalPages, List<LoginLogBean> datas) {
+	public LoginLogPageBean(int page, int lines, int index, int total, int totalPages, List<LoginLogBean> rows) {
 		super();
 		this.page = page;
-		this.rows = rows;
+		this.lines = lines;
 		this.index = index;
-		this.totalRows = totalRows;
+		this.total = total;
 		this.totalPages = totalPages;
-		this.datas = datas;
+		this.rows = rows;
 	}
 	@Override
 	public String toString() {
-		return "LoginLogPageBean [page=" + page + ", rows=" + rows + ", index=" + index + ", totalRows=" + totalRows
-				+ ", totalPages=" + totalPages + ", datas=" + datas + "]";
+		return "LoginLogPageBean [page=" + page + ", lines=" + lines + ", index=" + index + ", total=" + total
+				+ ", totalPages=" + totalPages + ", rows=" + rows + "]";
 	}
 	public int getPage() {
 		return page;
@@ -42,11 +42,11 @@ public class LoginLogPageBean implements Serializable{
 	public void setPage(int page) {
 		this.page = page;
 	}
-	public int getRows() {
-		return rows;
+	public int getLines() {
+		return lines;
 	}
-	public void setRows(int rows) {
-		this.rows = rows;
+	public void setLines(int lines) {
+		this.lines = lines;
 	}
 	public int getIndex() {
 		return index;
@@ -54,11 +54,11 @@ public class LoginLogPageBean implements Serializable{
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	public int getTotalRows() {
-		return totalRows;
+	public int getTotal() {
+		return total;
 	}
-	public void setTotalRows(int totalRows) {
-		this.totalRows = totalRows;
+	public void setTotal(int total) {
+		this.total = total;
 	}
 	public int getTotalPages() {
 		return totalPages;
@@ -66,12 +66,16 @@ public class LoginLogPageBean implements Serializable{
 	public void setTotalPages(int totalPages) {
 		this.totalPages = totalPages;
 	}
-	public List<LoginLogBean> getDatas() {
-		return datas;
+	public List<LoginLogBean> getRows() {
+		return rows;
 	}
-	public void setDatas(List<LoginLogBean> datas) {
-		this.datas = datas;
+	public void setRows(List<LoginLogBean> rows) {
+		this.rows = rows;
 	}
+	
+	
+	
+	
 	
 	
 	

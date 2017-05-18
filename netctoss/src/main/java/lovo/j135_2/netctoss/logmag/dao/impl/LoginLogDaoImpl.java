@@ -21,27 +21,27 @@ public class LoginLogDaoImpl implements ILoginLogDao {
 	private LoginLogMapper loginLogMapper;
 
 	@Override
-	public void saveLoginLog(String name, Timestamp loginTime) {
+	public int saveLoginLog(LoginLogBean bean) {
 		// TODO Auto-generated method stub		
-		loginLogMapper.saveLoginLog(name, loginTime);
+		return loginLogMapper.saveLoginLog(bean);
 	}
 
 	@Override
-	public List<LoginLogBean> findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String beginTime, String endTime) throws Exception {
+	public List<LoginLogBean> findLoginLogBeanByTimeToPage(LoginLogPageBean pageBean,String account,String beginTime, String endTime) throws Exception {
 		// TODO Auto-generated method stub
-		return loginLogMapper.findLoginLogBeanByTimeToPage(pageBean,beginTime, endTime);
+		return loginLogMapper.findLoginLogBeanByTimeToPage(pageBean,account,beginTime, endTime);
 	}
 
 	@Override
-	public int findCountLoginLogBeanByTimeToPage(String beginTime, String endTime) {
+	public int findCountLoginLogBeanByTimeToPage(String account,String beginTime, String endTime) throws Exception {
 		// TODO Auto-generated method stub
-		return loginLogMapper.findCountLoginLogBeanByTimeToPage(beginTime, endTime);
+		return loginLogMapper.findCountLoginLogBeanByTimeToPage(account,beginTime, endTime);
 	}
 
 	@Override
-	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String beginTime, String endTime) {
+	public List<LoginLogBean> findAllLoginLogBeanByTimeToPage(String account,String beginTime, String endTime) {
 		// TODO Auto-generated method stub
-		return loginLogMapper.findAllLoginLogBeanByTimeToPage(beginTime, endTime);
+		return loginLogMapper.findAllLoginLogBeanByTimeToPage(account,beginTime, endTime);
 	}
 
 	@Override

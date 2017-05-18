@@ -2,8 +2,6 @@ package lovo.j135_2.netctoss.rightmag.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 
 public interface RoleService {
@@ -43,5 +41,5 @@ public interface RoleService {
 	 */
 	public List<Long> idList(long id);
 	
-	
+	public Role getRoleById(Long id);
 }
