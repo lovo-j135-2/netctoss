@@ -32,6 +32,9 @@ public class PayController {
 
 	@RequestMapping(value = "/load", produces = "application/json;charset=utf-8")
 	public PagePay load(@RequestParam("page") String page, @RequestParam("rows") String rows) {
+		if(page.equals("0")){
+			page="1";
+		}
 		PagePay pagePay = new PagePay();
 		pagePay.setPage(Integer.parseInt(page));
 		pagePay.setLines(Integer.parseInt(rows));
@@ -122,6 +125,9 @@ public class PayController {
 	public PagePay findPaysByDate(@RequestParam(value="page")String page,
 			@RequestParam(value="rows")String rows,
 			@RequestParam(value="data[]")String[] data) {
+		if(page.equals("0")){
+			page="1";
+		}
 		PagePay pagePay = new PagePay();
 		pagePay.setPage(Integer.parseInt(page));
 		pagePay.setLines(Integer.parseInt(rows));
