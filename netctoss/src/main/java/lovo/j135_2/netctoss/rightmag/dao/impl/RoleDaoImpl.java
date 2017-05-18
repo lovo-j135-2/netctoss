@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 import lovo.j135_2.netctoss.rightmag.dao.RoleDao;
 import lovo.j135_2.netctoss.rightmag.mapper.RoleMapper;
@@ -43,9 +44,9 @@ public class RoleDaoImpl implements RoleDao{
 	}
 
 	@Override
-	public List<Role> searchRole(String roleName, String roleType) {
+	public List<Role> searchRole(String roleName, String roleType,Page page) {
 		// TODO Auto-generated method stub
-		return rolemapper.searchRole(roleName, roleType);
+		return rolemapper.searchRole(roleName, roleType,page);
 	}
 
 	@Override
@@ -70,6 +71,18 @@ public class RoleDaoImpl implements RoleDao{
 	public void deleteRightOfRole(long id) {
 		// TODO Auto-generated method stub
 		rolemapper.deleteRightOfRole(id);
+	}
+
+	@Override
+	public int searchRoleCount(String roleName, String roleType, Page page) {
+		// TODO Auto-generated method stub
+		return rolemapper.searchRoleCount(roleName, roleType, page);
+	}
+
+	@Override
+	public Role findRoleBeanById(long id) {
+		// TODO Auto-generated method stub
+		return rolemapper.findRoleBeanById(id);
 	}
 
 }

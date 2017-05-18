@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
 import lovo.j135_2.netctoss.rightmag.beans.Right;
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 import lovo.j135_2.netctoss.rightmag.service.RightService;
@@ -26,10 +27,16 @@ public class RoleController {
 	@Resource
 	private RightService rightServiceImpl;
 	
-	@RequestMapping(value="/show")
-	public List<Role> showRole(){ //查询角色表，返回角色的List
-		List<Role>roleList = roleServiceImpl.getRole();
-		return roleList;
+	@RequestMapping(value="/show", produces = "application/json;charset=utf-8")
+	public Page showRole(@RequestParam("page")String page,@RequestParam("rows")String rows){
+		
+		System.out.println("每页条数"+rows);
+		Page pager=new Page();
+		int index=(Integer.parseInt(page)-1)*(Integer.parseInt(rows));
+		pager.setIndex(index);
+		pager.setLines(Integer.parseInt(rows));
+		pager= roleServiceImpl.searchRole("%", "%", pager);
+		return pager;
 	}
 	
 	@RequestMapping(value="/searchRight")
@@ -83,10 +90,14 @@ public class RoleController {
 	}
 	
 	@RequestMapping(value="/searchRole",produces={"application/json;charset=utf-8"})
-	public List<Role> searchRole(@RequestBody Role role){ //模糊查询角色表，返回筛选后的角色List
-		System.out.println(role.getName()+role.getRoleType());
-		List<Role> roleList=roleServiceImpl.searchRole(role.getName(),role.getRoleType());
-		return roleList;
+	public Page searchRole(@RequestParam("name")String name,@RequestParam("roleType")String roleType,@RequestParam("page")String page,@RequestParam("lines")String lines){ //模糊查询角色表，返回筛选后的角色List
+		System.out.println("come on");
+		Page pager=new Page();
+		pager.setLines(Integer.parseInt(lines));
+		int index=(Integer.parseInt(page)-1)*(Integer.parseInt(lines));
+		pager.setIndex(index);
+		pager=roleServiceImpl.searchRole(name,roleType,pager);
+		return pager;
 	}
 	
 	@RequestMapping(value="/delete")

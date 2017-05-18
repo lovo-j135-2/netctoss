@@ -39,12 +39,12 @@
 				<th data-options="field:'pay',width:100,formatter:forPayName,align:'center'">资费类型</th>
 				<th data-options="field:'lab',width:100,formatter:forLabName,align:'center'">实验室地址</th> -->
 
-				<th field="business_name" width="100" align="center">业务账号</th>
+				<th field="id" width="100" align="center">业务账号</th>
 				<th field="password" width="100" align="center">密码</th>
-				<th field="fk_accountuser_id" width="100" formatter="forUserName"
+				<th field="fk_accountuser_id.account_name" width="100" formatter="forUserName"
 					align="center">账务账号</th>
-				<th field="pay" width="100" formatter="forPayName" align="center">资费类型</th>
-				<th field="lab" width="100" formatter="forLabName" align="center">实验室地址</th>
+				<th field="user.pay.payName" width="100" formatter="forPayName" align="center">资费类型</th>
+				<th field="user.lab.ip_num" width="100" formatter="forLabName" align="center">实验室地址</th>
 
 			</tr>
 		</thead>
@@ -53,21 +53,12 @@
 		<a href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-add" plain="true" onclick="addBusiness()">增加业务账号</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-edit" plain="true" onclick="update()">修改业务账号</a> <a
+			iconCls="icon-edit" plain="true" onclick="update()">修改业务密码</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no"
-			plain="true" onclick="deleteBusiness()">删除业务账号</a> <a
-			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-edit" plain="true" onclick="updateBusiness()">开通业务账号</a>
+			plain="true" onclick="deleteBusiness()">删除业务账号</a>
 
 		<a href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-edit" plain="true" onclick="stopBusiness()">暂停业务账号</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-pwd" plain="true" onclick="queryBusiness()">查询业务账号</a>
-
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-pwd" plain="true" onclick="usinessInfo()">业务账号详细</a> <a
-			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-pwd" plain="true" onclick="usinessScan()">业务账号浏览</a>
+			iconCls="icon-pwd" plain="true" onclick="showBusinessDetail()">业务账号详细</a>
 	</div>
 
 
@@ -92,7 +83,6 @@
 					class="easyui-validatebox" missingMessage="不能为空" required="true"> -->
 				<select id="accountType" class="easyui-combobox" name="dept" style="width: 150px;">
 				</select>
-
 			</div>
 			<br>
 			<div class="fitem">
@@ -121,15 +111,22 @@
 	</div>
 
 	<!-- 修改账务窗口 -->
-	<div id="update" class="easyui-dialog"
-		style="width: 450px; height: 150px; padding: 10px 20px" closed="true"
+	<div id="updatePassword" class="easyui-dialog"
+		style="width: 450px; height: 300px; padding: 10px 20px" closed="true"
 		title="修改业务" buttons="#dlg-buttons">
 		<form id="update" method="post" style="padding: 10px 20px">
 			<div class="fitem">
-				<label>业务密码</label> <input id="updatePassword" name="password"
+				<label>业务账号：</label> 
+				<span id="updateBusinessName"></span>
+			</div><br>
+			<div class="fitem">
+				<label>密码</label> <input id="updatePasswordI" name="password"
+					class="easyui-validatebox" missingMessage="不能为空" required="true">
+			</div><br>
+			<div class="fitem">
+				<label>确认密码</label> <input id="comfirmPasswordI" name="password"
 					class="easyui-validatebox" missingMessage="不能为空" required="true">
 			</div>
-			<br>
 		</form>
 	</div>
 	<div id="dlg-buttons">
@@ -137,20 +134,34 @@
 			iconCls="icon-ok" onclick="updatePwd()">修改</a> <a
 			href="javascript:void(0);" class="easyui-linkbutton"
 			iconCls="icon-cancel"
-			onclick="javascript:$('#update').dialog('close')">取消</a>
+			onclick="javascript:$('#updatePassword').dialog('close')">取消</a>
 	</div>
 
 	<!-- 查询业务窗口 -->
-	<div id="queryBusiness" class="easyui-dialog"
-		style="width: 450px; height: 150px; padding: 10px 20px" closed="true"
+	<div id="queryBusinessDetail" class="easyui-dialog"
+		style="width: 450px; height: 300px; padding: 10px 20px" closed="true"
 		title="查询业务" buttons="#dlg-buttons">
-		<form id="find" method="post" style="padding: 10px 20px">
+		<form id="showDetail" method="post" style="padding: 10px 20px">
 			<div class="fitem">
-				<label>业务账号</label> <input id="query" name="queryBusiness"
-					placeholder="请输入要查询的业务账号" class="easyui-validatebox"
-					missingMessage="不能为空" required="true" style="width:200px">
+				<label>业务账号：</label> 
+				<span id="businessName"></span>
+			</div><br>
+			<div class="fitem">
+				<label>账号密码：</label> 
+				<span id="businesssPassword"></span>
+			</div><br>
+			<div class="fitem">
+				<label>账务账号：</label> 
+				<span id="accountNameDetail"></span>
+			</div><br>
+			<div class="fitem">
+				<label>资费类型：</label> 
+				<span id="payTypeDetail"></span>
+			</div><br>
+			<div class="fitem">
+				<label>实验室IP：</label> 
+				<span id="ipName"></span>
 			</div>
-			<br>
 		</form>
 	</div>
 	<div id="dlg-buttons">
@@ -168,56 +179,14 @@
 	</script>
 	<script type="text/javascript">
 		function forUserName(value, row, index) {
-			if (row.user) {
-				return row.fk_accountuser_id.account_name;
-			} else {
-				return value;
-			}
-
+			return row.fk_accountuser_id.account_name;
 		};
 		function forPayName(value, row, index) {
-			if (row.user) {
-				return row.user.pay.payName;
-			} else {
-				return value;
-			}
+			return row.pay.payName;
 		};
 		function forLabName(value, row, index) {
-			if (row.user) {
-				return row.user.lab.ip_num;
-			} else {
-				return value;
-			}
+			return row.lab.ip_num;
 		};
 	</script>
-	<!-- <script type="text/javascript">
-	$('#dg').datagrid({
-		columns:[[
-			{field:'business_name',title:'业务账号', width:80,
-				formatter: function(value,row,index){
-					if (row.user){
-						return row.user.business_name;
-					} else {
-						return value;
-					}
-				}
-			},
-			{field:'password',title:'业务密码', width:80,
-				formatter: function(value,row,index){
-					if (row.user){
-						return row.user.password;
-					} else {
-						return value;
-					}
-				}
-			},
-			 {field:'fk_accountuser_id',title:'账务账号', width:80,
-				formatter: function(value,row,index){
-					return row.fk_accountuser_id;
-				}
-			} 
-		]]
-	});
-	</script> -->
 </body>
 </html>

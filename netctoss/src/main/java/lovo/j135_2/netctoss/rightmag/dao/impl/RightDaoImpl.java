@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.chainsaw.Main;
 import org.springframework.stereotype.Repository;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
 import lovo.j135_2.netctoss.rightmag.beans.Right;
 import lovo.j135_2.netctoss.rightmag.dao.RightDao;
 import lovo.j135_2.netctoss.rightmag.mapper.RightMapper;
@@ -34,9 +36,26 @@ public class RightDaoImpl implements RightDao {
 	}
 
 	@Override
+	public List<Right> getRights(Page page) {
+		// TODO Auto-generated method stub
+		return rightMapper.getRights(page);
+	}
+
+	@Override
+	public int getRightsCount() {
+		// TODO Auto-generated method stub
+		return rightMapper.findRightsCount();
+	}
+
+	@Override
 	public List<Right> getRights() {
 		// TODO Auto-generated method stub
 		return rightMapper.getRights();
 	}
 
+	@Override
+	public Right findRightBeanById(long id) {
+		// TODO Auto-generated method stub
+		return rightMapper.findRightBeanById(id);
+	}
 }

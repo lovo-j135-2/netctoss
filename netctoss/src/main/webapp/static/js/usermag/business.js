@@ -1,52 +1,29 @@
-$(document).ready(function() {
-	load();
-})
-function load() {
-	var va = {page:"1",rows:"10"};
-	var json = $.toJSON(va);
-	$.ajax({
-		type:"get",
-		url:"businessmag/load",
-		data:va,
-		dataType:"json",
-		success:function(data){
-			//var json = $.parseJSON(data);
-			var users = data.rows;
-			var jsonArray = [];
-			$.each(users,function(index, content){
-				var a = {
-                    'business_name' : content.business_name,
-                    'id' :content.id,
-					'password' : content.password,
-                    'fk_accountuser_id' : content.fk_accountuser_id.account_name,
-                    'pay' : content.pay.payType,
-                    'lab' : content.lab.ip_num,
-                };
-				jsonArray.push(a);
-			});
-			var total = {total:data.total,rows:jsonArray};
-			$('#dg').datagrid('loadData', total);
-		},
-		error : function() {
-	        alert('error');
-	    }
+window.onload=function(){
+	
+	// 加在页面时，加载数据
+	var s=$('#dg').datagrid({
+		url : "businessmag/load",
 	});
 	$(function() {
 		var pager = $('#dg').datagrid().datagrid('getPager');
 		var options = $(pager).data("pagination").options;  
 		// 将行数变为可选择的行数
 		$(pager).pagination({
-			pageSize:5,
-			pageList: [5,10,15],
+			pageSize:10,
+			pageList: [10,20],
 			beforePageText: '第',// 页数文本框前显示的汉字
     		afterPageText: '页    共 {pages} 页',  
     		displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
 		});
 	})
 }
+
+
 //打开添加业务窗口
 function addBusiness() {
 	$("#accountType").text("");
+	$("#labType").text("");
+	$("#payType").text("");
 	$('#addBusiness').dialog('open');
 	$('#add').form('clear');
 	loadAccountAndPayAndLab();
@@ -59,7 +36,6 @@ function loadAccountAndPayAndLab() {
 		contentType:"application/json",
 		async:true,
 		success:function(data){
-			console.info(data[0].id);
 			for (var i = 0; i < data.length; i++) {
 				$("<option></option>").val(data[i].id).text(data[i].account_name).appendTo($("#accountType"));
 			}
@@ -72,8 +48,9 @@ function loadAccountAndPayAndLab() {
 		contentType:"application/json",
 		async:true,
 		success:function(data){
+			console.info(data)
 			for (var i = 0; i < data.length; i++) {
-				$("<option></option>").val(data.id).text(data.account_name).appendTo($("#payType"));
+				$("<option></option>").val(data[i].id).text(data[i].payName).appendTo($("#payType"));
 			}
 		}
 	});
@@ -85,7 +62,7 @@ function loadAccountAndPayAndLab() {
 		async:true,
 		success:function(data){
 			for (var i = 0; i < data.length; i++) {
-				$("<option></option>").val(data[i].id).text(data[i].account_name).appendTo($("#labType"));
+				$("<option></option>").val(data[i].id).text(data[i].ip_num).appendTo($("#labType"));
 			}
 		}
 	});
@@ -96,8 +73,8 @@ function loadAccountAndPayAndLab() {
 function update() {
 	var value = $('#dg').datagrid('getSelected');
 	if(value!=null){
-		$('#update').dialog('open');
-		
+		$('#updatePassword').dialog('open');
+		$("#updateBusinessName").text(value.id)
 	}else{
 		$.messager.show({
 			title:'提示',
@@ -154,8 +131,7 @@ function deleteBusiness() {
 			success:function(msg){
 				//alert(msg.message);
 				//删除成功后刷新当前的表格数据
-				$('#dg').datagrid('reload',{
-				});
+				$('#dg').datagrid('reload');
 			}
 		})
 	}else{
@@ -174,9 +150,7 @@ function deleteBusiness() {
 
 //修改业务密码
 function updatePwd() {
-	var value = $('#dg').datagrid('getSelected');
-	console.info(value);
-	var user = {"id":value.id,"password":$('#updatePassword').val()};
+	var user = {id:$("#updateBusinessName").text(),password:$('#comfirmPasswordI').val()};
 	var json = $.toJSON(user);
 	$.ajax({
 		type:"POST",
@@ -184,15 +158,67 @@ function updatePwd() {
 		async:true,
 		data:json,
 		contentType:"application/json",
-		success:function(msg){
-			console.info(msg.message);
-			load();
-			$('#update').dialog('close');
+		success:function(mes){
+			if(mes.flag==true){
+				$('#dg').datagrid('reload');
+				// 在上方中部显示消息窗口
+				$.messager.show({
+					title:'提示',
+					msg:mes.message,
+					showType:'show',
+					style:{
+						right:'',
+						top:document.body.scrollTop+document.documentElement.scrollTop,
+						bottom:''
+					}
+				});
+				$('#updatePassword').dialog('close');
+				$('#addFM').form('clear');
+			}else{
+				// 在上方中部显示消息窗口
+				$.messager.show({
+					title:'提示',
+					msg:'系统繁忙，请稍后重试',
+					showType:'show',
+					style:{
+						right:'',
+						top:document.body.scrollTop+document.documentElement.scrollTop,
+						bottom:''
+					}
+				});
+			}
 		}
-		
-		
 	})
 }
+
+function showBusinessDetail() {
+	var value = $("#dg").datagrid('getSelected');
+	console.info(value);
+	if (value != null) {
+		$('#queryBusinessDetail').dialog('open');
+		$('#showDetail').form('clear');
+		$("#businessName").html(value.business_name);
+		$("#businesssPassword").html(value.password);
+		$("#accountNameDetail").html(value.fk_accountuser_id.account_name);
+		$("#payTypeDetail").html(value.pay.payType);
+		$("#ipName").html(value.lab.ip_num);
+	} else {
+		// 在上方中部显示消息窗口
+		$.messager.show({
+			title:'提示',
+			msg:"请选择一条数据",
+			showType:'show',
+			style:{
+				right:'',
+				top:document.body.scrollTop+document.documentElement.scrollTop,
+				bottom:''
+			}
+		});
+	}
+}
+
+
+
 //查询业务
 function query() {
 	var va = {business_name:$('#query').val()};

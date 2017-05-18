@@ -169,7 +169,6 @@
 	</aop:config>
 	
 	
-	
 	<!-- <bean id="logAspectJ" class="lovo.j135_2.netctoss.logmag.logaspectj.LogAspectJ">
 	
 	</bean>

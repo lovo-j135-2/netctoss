@@ -65,4 +65,6 @@ public interface IBusinessDao {
 	
 	public Business findBusinessByIdAndPassword(Long id, String password) throws Exception;
 	
+	public Business findBusinessById(Long id) throws Exception;
+	
 }

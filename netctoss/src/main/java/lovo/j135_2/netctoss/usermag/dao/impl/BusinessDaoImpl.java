@@ -61,4 +61,10 @@ public class BusinessDaoImpl implements IBusinessDao{
 		// TODO Auto-generated method stub
 		return businessMapper.findBusinessByIdAndPassword(id, password);
 	}
+
+	@Override
+	public Business findBusinessById(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return businessMapper.findBusinessById(id);
+	}
 }

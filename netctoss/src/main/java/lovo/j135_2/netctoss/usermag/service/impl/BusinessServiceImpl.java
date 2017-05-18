@@ -61,4 +61,10 @@ public class BusinessServiceImpl implements BusinessService {
 		// TODO Auto-generated method stub
 		return businessDaoImpl.findBusinessByIdAndPassword(id, password);
 	}
+
+	@Override
+	public Business findBusinessById(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		return businessDaoImpl.findBusinessById(id);
+	}
 }

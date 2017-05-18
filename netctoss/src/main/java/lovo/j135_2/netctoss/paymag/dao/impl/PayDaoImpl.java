@@ -59,6 +59,12 @@ public class PayDaoImpl implements PayDao {
 		// TODO Auto-generated method stub
 		return payMapper.findPayWithBusinessById(id);
 	}
+
+	@Override
+	public List<Pay> findAllPays() throws Exception {
+		// TODO Auto-generated method stub
+		return payMapper.findAllPays();
+	}
 	
 	
 }

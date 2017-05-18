@@ -57,4 +57,10 @@ public class PayServiceImpl implements PayService {
 		return payDaoImpl.findPayWithBusinessById(id);
 	}
 
+	@Override
+	public List<Pay> findAllPays() throws Exception {
+		// TODO Auto-generated method stub
+		return payDaoImpl.findAllPays();
+	}
+
 }

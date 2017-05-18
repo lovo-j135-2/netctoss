@@ -63,4 +63,6 @@ public interface PayDao {
 	 * @throws Exception
 	 */
 	public Pay findPayWithBusinessById(Long id) throws Exception;
+	
+	public List<Pay> findAllPays() throws Exception;
 }

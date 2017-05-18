@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
 import lovo.j135_2.netctoss.rightmag.beans.Right;
 import lovo.j135_2.netctoss.rightmag.dao.RightDao;
 import lovo.j135_2.netctoss.rightmag.service.RightService;
@@ -34,9 +35,29 @@ public class RightServiceImpl implements RightService{
 	}
 
 	@Override
+	public Page getRights(Page page) {
+		// TODO Auto-generated method stub
+		int total=rightDaoImpl.getRightsCount();
+		System.out.println(total);
+		List<Right> list=rightDaoImpl.getRights(page);
+		for (int i = 0; i <list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+		page.setTotal(total);
+		page.setRows(list);
+		return page;
+	}
+
+	@Override
 	public List<Right> getRights() {
 		// TODO Auto-generated method stub
 		return rightDaoImpl.getRights();
+	}
+
+	@Override
+	public Right findRightBeanById(long id) {
+		// TODO Auto-generated method stub
+		return rightDaoImpl.findRightBeanById(id);
 	}
 
 }
