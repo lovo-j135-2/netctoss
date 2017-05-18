@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
+import lovo.j135_2.netctoss.rightmag.beans.Right;
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 
 public interface RoleService {
@@ -26,7 +28,7 @@ public interface RoleService {
 	/**
 	 * 查询角色
 	 */
-	public List<Role> searchRole(String roleName,String roleType);
+	public Page searchRole(String roleName,String roleType,Page page);
 	
 //	/**
 //	 *批量添加权限到角色 
@@ -43,5 +45,9 @@ public interface RoleService {
 	 */
 	public List<Long> idList(long id);
 	
+	/**
+	 * 通过Id查找角色
+	 */
+	public Role findRoleBeanById(long id);
 	
 }

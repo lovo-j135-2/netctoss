@@ -105,14 +105,35 @@
 	
 	
 	<script type="text/javascript">
-		var rid;
+	window.onload=function(){
+		/* $(function() {
+			var pager = $('#dg').datagrid().datagrid('getPager');
+			var options = $(pager).data("pagination").options;  
+			// 将行数变为可选择的行数
+			$(pager).pagination({
+				pageSize:10,
+				pageList: [10,20],
+				beforePageText: '第',// 页数文本框前显示的汉字
+	    		afterPageText: '页    共 {pages} 页',  
+	    		displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
+			});
+		}) */
+		// 加在页面时，加载数据
+		$('#dg').datagrid({
+			url:"role/show",
+			// 将日期按要求输出
+			
+		});
+	}
+	
+	/* 	var rid;
 		show = function(){
 			$('#dg').datagrid({
 				url:"role/show",
 			});
-		}
+		} */
 		
-		window.onload=show();
+		/* window.onload=show(); */
 		
 		function updateButton(){
 			var row=$('#dg').datagrid('getSelected');//获取选中行在mysql数据库中的id
@@ -159,7 +180,7 @@
 				 success:function(data){
 					alert("删除成功");
 					$('#d').window('close');
-					show();
+					$('#dg').datagrid('reload');
 				}
 			})
 		}
@@ -230,13 +251,20 @@
 				sname="%";
 			}
 			var stype=$('#searchType').val();
-			var role={name:sname,roleType:stype};
-			var json=$.toJSON(role);
+			var options=$("#dg").datagrid("getPager").data("pagination").options;
+			var page=options.pageNumber;
+			if(page==0){
+				page=1;
+			}
+			console.info(page);
+			var rows=options.pageSize;
+			var role={'name':sname,'roleType':stype,'page':page,'lines':rows};
+			
 			$.ajax({
 				type:"POST",
 				url:"role/searchRole",
-				data:json,
-				contentType:"application/json",
+				data:role,
+				dataType:"json",
 				async:true,
 				success:function(data){
 					console.info(data);
@@ -297,7 +325,7 @@
 					success:function(data){
 						alert("添加成功");
 						$('#w').window('close');
-						show();
+						$('#dg').datagrid('reload');
 					}
 				})	
 			}

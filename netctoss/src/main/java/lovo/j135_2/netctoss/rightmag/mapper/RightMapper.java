@@ -6,10 +6,12 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
 import lovo.j135_2.netctoss.rightmag.beans.Right;
 
 public interface RightMapper {
@@ -23,7 +25,28 @@ public interface RightMapper {
 	@Update(value={"update t_right set name=#{right.name},discription=#{right.discription} where id=#{right.id}"})
 	public void updateRight(@Param("right")Right right);
 	
-	@Select(value={"select * from t_right"})
+	@Select(value="select * from t_right limit #{page.index},#{page.lines}")
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property="name",column="name",javaType=String.class),
+		@Result(property="discription",column="discription",javaType=String.class),
+		@Result(property="url",column="url",javaType=String.class),
+		@Result(property="parentId",column="p_id",javaType=Long.class),
+	})
+	public List<Right> getRights(@Param("page")Page page);
+	
+	@Select(value="select * from t_right where id=#{id}")
+	@Results({
+		@Result(id=true,property="id",column="id",javaType=Long.class),
+		@Result(property="name",column="name",javaType=String.class),
+		@Result(property="discription",column="discription",javaType=String.class),
+		@Result(property="url",column="url",javaType=String.class),
+		@Result(property="parentId",column="p_id",javaType=Long.class),
+	})
+	public Right findRightBeanById(long id);
+
+	
+	@Select(value="select * from t_right")
 	@Results({
 		@Result(id=true,property="id",column="id",javaType=Long.class),
 		@Result(property="name",column="name",javaType=String.class),
@@ -32,4 +55,8 @@ public interface RightMapper {
 		@Result(property="parentId",column="p_id",javaType=Long.class),
 	})
 	public List<Right> getRights();
+	
+	@Select(value="select count(*) from t_right")
+	@ResultType(Integer.class)
+	public int findRightsCount();
 }

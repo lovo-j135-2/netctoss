@@ -42,7 +42,7 @@
 	<div id="tool">
 			
 			<div style="height:40px;margin-top:10px">
-					<span style="margin-left:20px"><input type="button" value="添加权限" onclick="$('#w').window('open')"></span>
+					<span style="margin-left:20px"><input type="button" value="添加权限" onclick="saveButton()"></span>
 					<span style="margin-left:120px"><input type="button" value="修改权限" onclick="getRowIdToUpdate()"></span>
 					<span style="margin-left:120px"><input type="button" value="删除权限" onclick="getRowIdToDelete()"></span>
 			</div>
@@ -87,6 +87,8 @@
 	<script type="text/javascript">
 		var rid;
 		
+		
+		
 		function getRowIdToUpdate(){
 			var row=$('#dg').datagrid('getSelected');//获取选中行在mysql数据库中的id，Amazing！！！
 			if(row==null||row==""){
@@ -95,6 +97,8 @@
 				rid=row.id;
 				console.info(rid);
 				$('#u').window('open');
+				$('#rightNameUpdate').textbox("setValue",row.name);
+				$('#rightDiscriptionUpdate').textbox("setValue",row.discription);
 			}
 		}
 		
@@ -106,6 +110,7 @@
 				rid=row.id;
 				//console.info(rid);
 				$('#d').window('open');
+				
 			}
 		}
 		
@@ -122,13 +127,13 @@
 				async:true,
 				 success:function(data){
 					alert("删除成功");
-					show();
+					$('#d').window('close');		
+					$('#dg').datagrid('reload');
 				}
 				/* error:function(){
 					alert("error");
 				} */
 			})
-			$('#d').window('close');		
 		}
 		
 		function updateRight(){
@@ -148,20 +153,27 @@
 					async:true,
 					success:function(data){
 						alert("修改成功");
-						show();
+						$('#u').window('close');		
+						$('#dg').datagrid('reload');
 					}
 				})
-				$('#u').window('close');		
 				}
 		}
-		show = function(){
+		
+		window.onload=function(){
 			$('#dg').datagrid({
 				url:"right/show",
 			});
 		}
-		window.onload=show();
+		
+		function saveButton(){
+			$('#w').window('open');
+			$('#rightName').textbox("setValue","");
+			$('#rightDiscription').textbox("setValue","");
+		}
 		
 		function saveRight(){
+			
 			if($("#rightName").val()==""||$("#rightDiscription").val()==""){	//非空判断
 				alert("请耐心填完每个选项");
 			}else{
@@ -178,10 +190,10 @@
 					async:true,
 					success:function(data){
 						alert("添加成功");
-						show();
+						$('#w').window('close');		
+						$('#dg').datagrid('reload');
 					}
 				})
-				$('#w').window('close');		
 				}
 			}
 		

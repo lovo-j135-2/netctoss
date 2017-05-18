@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import lovo.j135_2.netctoss.rightmag.beans.Page;
 import lovo.j135_2.netctoss.rightmag.beans.Role;
 
 public interface RoleDao {
@@ -26,7 +27,12 @@ public interface RoleDao {
 	/**
 	 * 查询角色
 	 */
-	public List<Role> searchRole(String roleName,String roleType);
+	public List<Role> searchRole(String roleName,String roleType,Page page);
+
+	/**
+	 *返回模糊查询数据总条数 
+	 */
+	public int searchRoleCount(String roleName,String roleType,Page page);
 	
 	/**
 	 *批量添加权限到角色 
@@ -43,5 +49,13 @@ public interface RoleDao {
 	 */
 	public List<Long> idList(long id);
 	
+	/**
+	 * 删除角色权限（中间表）
+	 */
 	public void deleteRightOfRole(long id);
+	
+	/**
+	 * 通过Id查找角色
+	 */
+	public Role findRoleBeanById(long id);
 }
